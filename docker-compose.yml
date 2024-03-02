@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  shop_ai_front:
+    build: ./docker
+    container_name: automaton_shop_ai_front
+    ports:
+      - "9100:80"
+    volumes:
+      - .:/srv/www/website.local
