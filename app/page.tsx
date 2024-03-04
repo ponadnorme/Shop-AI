@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Home() {
   return (
@@ -29,6 +31,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
+        <FontAwesomeIcon icon={faStar} />
         <Image
           className={styles.logo}
           src="/next.svg"
