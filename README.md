@@ -10,5 +10,5 @@
 ## Used packages
 
 - [Emotion](https://emotion.sh) 
-- [Fontawesome](https://fontawesome.com/docs/web/setup/packages)
+- [Fontawesome](https://fontawesome.com/docs/web/)
 
