@@ -7,6 +7,11 @@
 2. Start containers: `docker compose up -d`.
 
 
+## How it works?
+
+When containers will be up, go to Your browser and open: http://localhost:9100.
+
+
 ## Used packages
 
 - [Emotion](https://emotion.sh) 
