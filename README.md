@@ -17,3 +17,9 @@ When containers will be up, go to Your browser and open: http://localhost:9100.
 - [Emotion](https://emotion.sh) 
 - [Fontawesome](https://fontawesome.com/docs/web/)
 
+
+## Server specification
+
+- Node.js v.19+
+- Nginx
+
