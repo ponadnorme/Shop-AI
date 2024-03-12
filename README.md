@@ -1,5 +1,9 @@
 # Automaton Shop AI
 
+REST API-driven frontend application tailored for seamless e-commerce experiences.
+Integrates with the Automaton ecosystem, offering a robust platform for online shopping solutions. 
+Designed for scalability, ease of use, and customization. Our application empowers 
+businesses to elevate their online presence and streamline their sales process.
 
 ## Preparing environment
 
