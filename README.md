@@ -27,3 +27,9 @@ When containers will be up, go to Your browser and open: http://localhost:9100.
 - Node.js v.19+
 - Nginx
 
+
+## Functionalities
+
+
+## FAQ
+
