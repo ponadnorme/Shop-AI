@@ -33,3 +33,8 @@ When containers will be up, go to Your browser and open: http://localhost:9100.
 
 ## FAQ
 
+**Is it free?**
+
+Frontend Shop application is totally free. Although to make it work, You need 
+Baselinker account for order management.
+
