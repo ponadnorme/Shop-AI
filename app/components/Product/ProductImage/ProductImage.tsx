@@ -3,6 +3,7 @@
 import {ProductImageElement} from "./styles";
 import Link from "next/link";
 import {SyntheticEvent} from "react";
+import {ImageVariantType} from "@/app/components/Product/types";
 
 const handleProductImageError = (event: SyntheticEvent): void => {
   const element: HTMLImageElement = event.currentTarget as HTMLImageElement;
@@ -11,11 +12,11 @@ const handleProductImageError = (event: SyntheticEvent): void => {
 
 const ProductImage = ({alt = '', images, linkTo}: {
   alt?: string,
-  images: Array<any> | null,
+  images: Array<ImageVariantType> | null,
   linkTo?: string,
 }) => {
   const getOriginalImageVariant = ({images}: {
-    images: Array<any>,
+    images: Array<ImageVariantType>,
   }) => {
     const foundVariant = images.filter((element) => {
       return element.variant === 'original';
@@ -36,7 +37,7 @@ const ProductImage = ({alt = '', images, linkTo}: {
   };
 
   const getImageVariant = ({images}: {
-    images: Array<any>,
+    images: Array<ImageVariantType>,
   }) => {
     const originalImageVariant = getOriginalImageVariant({
       images: images,
