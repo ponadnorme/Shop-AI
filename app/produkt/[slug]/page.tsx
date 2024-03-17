@@ -1,7 +1,4 @@
-import {ProductImage} from "@/app/components/Product/ProductImage";
-import {
-  getMainImageVariants
-} from "@/app/components/Product/ProductImage/utils";
+import {ImagePreview} from "@/app/components/Product/ImagePreview/ImagePreview";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
@@ -30,15 +27,14 @@ export default function Product({params}: { params: { slug: string } }) {
     regularPrice: 22.49,
     id: 'stringified',
   };
-  const mainImageVariants = getMainImageVariants(exampleProduct.images);
 
   return (
     <>
       <h1>Strona produktu</h1>
       {params.slug}
-      <ProductImage
-        images={mainImageVariants}
-        alt={exampleProduct.title}
+      <ImagePreview
+        images={exampleProduct.images}
+        title={exampleProduct.title}
       />
     </>
   );
