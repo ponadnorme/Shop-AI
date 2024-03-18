@@ -1,4 +1,4 @@
-import {ImagePreview} from "@/app/components/Product/ImagePreview/ImagePreview";
+import {ImageGalleryAi} from "@/app/components/Product/ImagePreview/ImageGalleryAi";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
@@ -7,6 +7,16 @@ export default function Product({params}: { params: { slug: string } }) {
       {
         id: 'id',
         isMain: true,
+        variants: [
+          {
+            variant: 'original',
+            url: '/sample-image.png',
+          },
+        ],
+      },
+      {
+        id: 'id2',
+        isMain: false,
         variants: [
           {
             variant: 'original',
@@ -32,7 +42,7 @@ export default function Product({params}: { params: { slug: string } }) {
     <>
       <h1>Strona produktu</h1>
       {params.slug}
-      <ImagePreview
+      <ImageGalleryAi
         images={exampleProduct.images}
         title={exampleProduct.title}
       />
