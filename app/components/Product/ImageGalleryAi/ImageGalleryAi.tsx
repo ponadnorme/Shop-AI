@@ -5,7 +5,7 @@ import {ProductImage} from "@/app/components/Product/ProductImage";
 import {
   getMainImageVariants
 } from "@/app/components/Product/ProductImage/utils";
-import {ThumbnailsElement} from "@/app/components/Product/ImagePreview/styles";
+import {ThumbnailsElement} from "@/app/components/Product/ImageGalleryAi/styles";
 import Swipeable from "@/app/components/Swipeable/Swipeable";
 
 export const ImageGalleryAi = ({images, title}: {images: Array<ImageType>, title: string}) => {

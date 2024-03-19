@@ -1,4 +1,4 @@
-import {ImageGalleryAi} from "@/app/components/Product/ImagePreview/ImageGalleryAi";
+import {ImageGalleryAi} from "@/app/components/Product/ImageGalleryAi";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
