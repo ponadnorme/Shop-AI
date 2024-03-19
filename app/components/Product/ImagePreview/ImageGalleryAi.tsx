@@ -6,6 +6,7 @@ import {
   getMainImageVariants
 } from "@/app/components/Product/ProductImage/utils";
 import {ThumbnailsElement} from "@/app/components/Product/ImagePreview/styles";
+import Swipeable from "@/app/components/Swipeable/Swipeable";
 
 export const ImageGalleryAi = ({images, title}: {images: Array<ImageType>, title: string}) => {
   const mainImageVariants = getMainImageVariants(images);
@@ -17,17 +18,20 @@ export const ImageGalleryAi = ({images, title}: {images: Array<ImageType>, title
         alt={title}
       />
       <ThumbnailsElement>
-        {images.map((imageType) => {
-          return (
-            <>
-              <ProductImage
-                images={imageType.variants}
-                alt={title}
+        <Swipeable>
+          {images.map((imageType) => {
+            return (
+              <a
                 key={imageType.id}
-              />
-            </>
-          );
-        })}
+              >
+                <ProductImage
+                  images={imageType.variants}
+                  alt={title}
+                />
+              </a>
+            );
+          })}
+        </Swipeable>
       </ThumbnailsElement>
     </>
   );
