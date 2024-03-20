@@ -1,17 +1,13 @@
 'use client';
 
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
-const Swipeable = ({ children }: {
-  children: React.ReactNode,
-}) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const contentRef = useRef<HTMLDivElement | null>(null);
-  const [startX, setStartX] = useState<number>(0);
-  const [translateX, setTranslateX] = useState<number>(0);
+const Swipeable = ({ children }) => {
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
 
-  const handleMove = (event: MouseEvent | TouchEvent) => {
-    let touchX: number;
+  const handleMove = (startX, initialTranslateX) => (event) => {
+    let touchX;
 
     if (event instanceof MouseEvent) {
       touchX = event.pageX;
@@ -20,55 +16,56 @@ const Swipeable = ({ children }: {
     }
 
     const deltaX = touchX - startX;
-    let newTranslateX = translateX + deltaX;
+    let newTranslateX = initialTranslateX + deltaX;
 
-    if (newTranslateX < 0) {
+    const maxTranslateX = containerRef.current.offsetWidth - contentRef.current.offsetWidth;
+
+    if (newTranslateX < maxTranslateX) {
+      newTranslateX = maxTranslateX;
+    }
+
+    if (newTranslateX > 0) {
       newTranslateX = 0;
     }
 
     if (contentRef.current) {
       contentRef.current.style.transform = `translateX(${newTranslateX}px)`;
     }
-
-    setTranslateX(newTranslateX);
-    setStartX(touchX);
   };
 
-  const handleStart = (event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+  const handleStart = (event) => {
     event.preventDefault();
-    let touchX: number;
+    let touchX;
 
-    if ('touches' in event.nativeEvent) {
-      touchX = event.nativeEvent.touches[0].clientX;
+    if ('touches' in event) {
+      touchX = event.touches[0].clientX;
     } else {
-      touchX = event.nativeEvent.pageX;
+      touchX = event.clientX;
     }
 
-    setStartX(touchX);
-    // setTranslateX(translateX);
+    const initialTranslateX = contentRef.current ? parseInt(contentRef.current.style.transform.replace('translateX(', '').replace('px)', '')) || 0 : 0;
+
+    const moveHandler = handleMove(touchX, initialTranslateX);
+
     if (containerRef.current) {
       containerRef.current.style.cursor = 'grabbing';
     }
 
-    // Add global event listeners
-    window.addEventListener('mousemove', handleMove);
-    window.addEventListener('mouseup', handleEnd);
-    window.addEventListener('touchmove', handleMove);
-    window.addEventListener('touchend', handleEnd);
-  };
+    const endHandler = () => {
+      if (containerRef.current) {
+        containerRef.current.style.cursor = 'grab';
+      }
 
-  const handleEnd = () => {
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'grab';
-    }
+      window.removeEventListener('mousemove', moveHandler);
+      window.removeEventListener('mouseup', endHandler);
+      window.removeEventListener('touchmove', moveHandler);
+      window.removeEventListener('touchend', endHandler);
+    };
 
-    window.removeEventListener('mousemove', handleMove);
-    window.removeEventListener('mouseup', handleEnd);
-    window.removeEventListener('touchmove', handleMove);
-    window.removeEventListener('touchend', handleEnd);
-
-    setStartX(0);
-    // setTranslateX(0);
+    window.addEventListener('mousemove', moveHandler);
+    window.addEventListener('mouseup', endHandler);
+    window.addEventListener('touchmove', moveHandler);
+    window.addEventListener('touchend', endHandler);
   };
 
   return (
@@ -76,17 +73,14 @@ const Swipeable = ({ children }: {
       ref={containerRef}
       onMouseDown={handleStart}
       onTouchStart={handleStart}
-      onMouseUp={handleEnd}
-      onMouseLeave={handleEnd}
-      onTouchEnd={handleEnd}
       style={{
         overflow: 'hidden',
         cursor: 'grab',
         userSelect: 'none',
-        touchAction: 'pan-y',
-    }}
+        touchAction: 'pan-x',
+      }}
     >
-      <div ref={contentRef} style={{ display: 'flex', transition: 'transform 0.3s ease-out' }}>
+      <div ref={contentRef} style={{ display: 'flex', transition: 'transform 0.3s ease-out', minWidth: 'max-content' }}>
         {children}
       </div>
     </div>
