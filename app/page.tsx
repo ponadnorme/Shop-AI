@@ -1,7 +1,18 @@
 import {ProductType} from "@/app/components/Product/types";
 import {Product} from "@/app/components/Product";
 
-export default function Home() {
+async function getTest() {
+  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/test`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch');
+  }
+
+  return response.json();
+}
+
+export default async function Home() {
+  await getTest();
+
   const exampleProduct = {
     title: 'test',
     images: [

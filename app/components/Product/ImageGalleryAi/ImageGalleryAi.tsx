@@ -7,9 +7,18 @@ import {
 } from "@/app/components/Product/ProductImage/utils";
 import {ThumbnailsElement} from "@/app/components/Product/ImageGalleryAi/styles";
 import Swipeable from "@/app/components/Swipeable/Swipeable";
+import useSWR from "swr";
+
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
 
 export const ImageGalleryAi = ({images, title}: {images: Array<ImageType>, title: string}) => {
   const mainImageVariants = getMainImageVariants(images);
+
+  const {data, error} = useSWR('/api/test', fetcher);
 
   return (
     <>
