@@ -1,12 +1,14 @@
 'use client';
 
-import {useRef} from "react";
+import React, {useRef} from "react";
 
-const Swipeable = ({ children }) => {
+const Swipeable = ({children}: {
+  children: React.ReactNode,
+}) => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
 
-  const handleMove = (startX, initialTranslateX) => (event) => {
+  const handleMove = (startX: number, initialTranslateX: number) => (event: MouseEvent | TouchEvent) => {
     let touchX;
 
     if (event instanceof MouseEvent) {
@@ -18,7 +20,13 @@ const Swipeable = ({ children }) => {
     const deltaX = touchX - startX;
     let newTranslateX = initialTranslateX + deltaX;
 
-    const maxTranslateX = containerRef.current.offsetWidth - contentRef.current.offsetWidth;
+    if (!containerRef.current || !contentRef.current) {
+      return;
+    }
+
+    const containerRefElement = containerRef.current as HTMLDivElement;
+    const contentRefElement = contentRef.current as HTMLDivElement;
+    const maxTranslateX = containerRefElement.offsetWidth - contentRefElement.offsetWidth;
 
     if (newTranslateX < maxTranslateX) {
       newTranslateX = maxTranslateX;
@@ -28,13 +36,19 @@ const Swipeable = ({ children }) => {
       newTranslateX = 0;
     }
 
-    if (contentRef.current) {
-      contentRef.current.style.transform = `translateX(${newTranslateX}px)`;
-    }
+    contentRefElement.style.transform = `translateX(${newTranslateX}px)`;
   };
 
-  const handleStart = (event) => {
+  const handleStart = (event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     event.preventDefault();
+
+    if (!containerRef.current || !contentRef.current) {
+      return;
+    }
+
+    const containerRefElement = containerRef.current as HTMLDivElement;
+    const contentRefElement = contentRef.current as HTMLDivElement;
+
     let touchX;
 
     if ('touches' in event) {
@@ -43,18 +57,14 @@ const Swipeable = ({ children }) => {
       touchX = event.clientX;
     }
 
-    const initialTranslateX = contentRef.current ? parseInt(contentRef.current.style.transform.replace('translateX(', '').replace('px)', '')) || 0 : 0;
+    const initialTranslateX = parseInt(contentRefElement.style.transform.replace('translateX(', '').replace('px)', '')) || 0;
 
     const moveHandler = handleMove(touchX, initialTranslateX);
 
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'grabbing';
-    }
+    containerRefElement.style.cursor = 'grabbing';
 
     const endHandler = () => {
-      if (containerRef.current) {
-        containerRef.current.style.cursor = 'grab';
-      }
+      containerRefElement.style.cursor = 'grab';
 
       window.removeEventListener('mousemove', moveHandler);
       window.removeEventListener('mouseup', endHandler);
