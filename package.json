@@ -17,6 +17,7 @@
     "next": "14.1.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-simple-star-rating": "^5.1.7",
     "swr": "^2.2.5"
   },
   "devDependencies": {

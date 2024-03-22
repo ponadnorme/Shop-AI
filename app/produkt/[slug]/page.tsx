@@ -1,4 +1,5 @@
 import {ImageGalleryAi} from "@/app/components/Product/ImageGalleryAi";
+import {Rating} from "@/app/components/Rating";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
@@ -45,6 +46,10 @@ export default function Product({params}: { params: { slug: string } }) {
       <ImageGalleryAi
         images={exampleProduct.images}
         title={exampleProduct.title}
+      />
+      <h1>{exampleProduct.title}</h1>
+      <Rating
+        rating={exampleProduct.rating}
       />
     </>
   );
