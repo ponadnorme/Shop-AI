@@ -1,17 +1,16 @@
 'use client';
 
-import {Rating as RatingPlugin} from "react-simple-star-rating";
+import {Rating as RatingPlugin} from "@smastrom/react-rating";
+import "./styles";
 
 export const Rating = ({rating}: {
   rating: number,
 }) => {
   return (
     <RatingPlugin
-      size={20}
-      iconsCount={6}
-      readonly={true}
-      initialValue={rating}
-      titleSeparator='z'
+      items={6}
+      readOnly={true}
+      value={rating}
     />
   );
 };

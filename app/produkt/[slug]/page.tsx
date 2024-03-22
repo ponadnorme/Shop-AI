@@ -48,9 +48,13 @@ export default function Product({params}: { params: { slug: string } }) {
         title={exampleProduct.title}
       />
       <h1>{exampleProduct.title}</h1>
-      <Rating
-        rating={exampleProduct.rating}
-      />
+      <div style={{
+        width: 200,
+      }}>
+        <Rating
+          rating={exampleProduct.rating}
+        />
+      </div>
     </>
   );
 };
