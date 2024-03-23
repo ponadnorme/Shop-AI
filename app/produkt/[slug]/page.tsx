@@ -1,5 +1,9 @@
 import {ImageGalleryAi} from "@/app/components/Product/ImageGalleryAi";
 import {Rating} from "@/app/components/Rating";
+import {Price} from "@/app/components/Product/Price";
+import {Button} from "@/app/components/Button";
+import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
@@ -54,6 +58,23 @@ export default function Product({params}: { params: { slug: string } }) {
         <Rating
           rating={exampleProduct.rating}
         />
+      </div>
+      <div>
+        <Price
+          price={exampleProduct.price}
+          regularPrice={exampleProduct.regularPrice}
+          lowestPrice={exampleProduct.lowestPrice}
+        />
+        <Button>
+          <FontAwesomeIcon
+            icon={faCartPlus}
+            style={{
+              height: 28,
+              marginRight: 6,
+            }}
+          />
+          <span>Dodaj do koszyka</span>
+        </Button>
       </div>
     </>
   );
