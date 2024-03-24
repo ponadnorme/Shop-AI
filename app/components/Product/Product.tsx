@@ -1,6 +1,5 @@
 import {
   BottomWrapperElement,
-  CartElement,
   ImageWrapperElement,
   ProductElement,
   PurchaseWrapperElement,
@@ -17,6 +16,7 @@ import {PriceElementVariantEnum} from "@/app/components/Product/Price/types";
 import {ProductType} from "@/app/components/Product/types";
 import Link from "next/link";
 import {buildRoute, Pages} from "@/app/routes";
+import {Button} from "@/app/components/Button";
 
 export const Product = ({product}: {
   product: ProductType,
@@ -52,10 +52,14 @@ export const Product = ({product}: {
             />
             <meta itemProp="priceCurrency" content={'PLN'}/>
             <meta itemProp="price" content={product.price.toFixed(2)}/>
-            <CartElement>
-              <FontAwesomeIcon icon={faCartPlus} />
-              <span />
-            </CartElement>
+            <Button>
+              <FontAwesomeIcon
+                icon={faCartPlus}
+                style={{
+                  height: 28,
+                }}
+              />
+            </Button>
           </PurchaseWrapperElement>
         </BottomWrapperElement>
       </ProductElement>

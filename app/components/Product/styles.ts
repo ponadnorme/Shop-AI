@@ -1,6 +1,7 @@
 'use client';
 
 import styled from "@emotion/styled";
+import {ButtonElement} from "@/app/components/Button/styles";
 
 export const ProductElement = styled.div`
   background: #fff;
@@ -58,39 +59,9 @@ export const PurchaseWrapperElement = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
-
-  svg {
-    color: #fff;
-    font-size: 24px;
-    transition: color 0.2s;
-
-    @media(min-width: 650px){
-      font-size: 26px;
-    }
-  }
-`
-
-export const CartElement = styled.div`
-  background: #190;
-  border-radius: 4px;
-  height: 50px;
-  position: relative;
-  transition: background .2s;
-  width: 50px;
-
-  svg {
-    color: #fff;
-    font-size: 22px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
-
-  &:hover {
-    background: #050;
-    cursor: pointer;
+  
+  ${ButtonElement} {
+    padding: 6px;
   }
 `
 
