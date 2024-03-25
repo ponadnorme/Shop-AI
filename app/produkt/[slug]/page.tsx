@@ -76,6 +76,14 @@ export default function Product({params}: { params: { slug: string } }) {
           <span>Dodaj do koszyka</span>
         </Button>
       </div>
+      <div>
+        {exampleProduct.quantity > 0 ? <>
+            Dostępny ({exampleProduct.quantity} szt.)
+          </>
+          : <>
+            Niedostępny
+          </>}
+      </div>
     </>
   );
 };
