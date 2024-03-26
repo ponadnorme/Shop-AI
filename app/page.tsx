@@ -1,5 +1,6 @@
 import {ProductType} from "@/app/components/Product/types";
 import {Product} from "@/app/components/Product";
+import {ProductModal} from "@/app/components/Product/ProductModal";
 
 async function getTest() {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/test`);
@@ -54,6 +55,7 @@ export default async function Home() {
           product={exampleProduct as ProductType}
         />
       </div>
+      <ProductModal/>
     </>
   );
 }

@@ -52,7 +52,9 @@ export const Product = ({product}: {
             />
             <meta itemProp="priceCurrency" content={'PLN'}/>
             <meta itemProp="price" content={product.price.toFixed(2)}/>
-            <Button>
+            <Button
+              linkTo={'?productModal'}
+            >
               <FontAwesomeIcon
                 icon={faCartPlus}
                 style={{
