@@ -15,7 +15,7 @@ import {
 import {PriceElementVariantEnum} from "@/app/components/Product/Price/types";
 import {ProductType} from "@/app/components/Product/types";
 import Link from "next/link";
-import {buildRoute, Pages} from "@/app/routes";
+import {buildRoute, Pages, productModalRoute} from "@/app/routes";
 import {Button} from "@/app/components/Button";
 
 export const Product = ({product}: {
@@ -53,7 +53,7 @@ export const Product = ({product}: {
             <meta itemProp="priceCurrency" content={'PLN'}/>
             <meta itemProp="price" content={product.price.toFixed(2)}/>
             <Button
-              linkTo={'?productModal'}
+              linkTo={productModalRoute(product.id)}
             >
               <FontAwesomeIcon
                 icon={faCartPlus}
