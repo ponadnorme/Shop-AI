@@ -22,3 +22,20 @@ export const ModalContentElement = styled.div`
   min-width: 318px;
   width: 100%;
 `;
+
+export const ModalHeaderElement = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  
+  > span {
+    align-self: center;
+    flex: 1;
+  }
+`;
+
+export const CloseModalElement = styled.button`
+  align-self: start;
+  background: none;
+  border: none;
+`;

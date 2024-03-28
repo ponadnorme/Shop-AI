@@ -2,8 +2,10 @@
 
 import {useSearchParams, useRouter} from "next/navigation";
 import {
+  CloseModalElement,
   ModalContentElement,
-  ModalElement
+  ModalElement,
+  ModalHeaderElement,
 } from "@/app/components/Product/ProductModal/styles";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -28,16 +30,19 @@ export const ProductModal = () => {
     <>
       <ModalElement>
         <ModalContentElement>
-          <button
-            onClick={closeModal}
-          >
-            <FontAwesomeIcon
-              icon={faXmark}
-              style={{
-                height: 28,
-              }}
-            />
-          </button>
+          <ModalHeaderElement>
+            <span>Karta produktu</span>
+            <CloseModalElement
+              onClick={closeModal}
+            >
+              <FontAwesomeIcon
+                icon={faXmark}
+                style={{
+                  height: 28,
+                }}
+              />
+            </CloseModalElement>
+          </ModalHeaderElement>
         </ModalContentElement>
       </ModalElement>
     </>
