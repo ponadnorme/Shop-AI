@@ -4,6 +4,8 @@ import {Price} from "@/app/components/Product/Price";
 import {Button} from "@/app/components/Button";
 import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {ProductModal} from "@/app/components/Product/ProductModal";
+import {productModalRoute} from "@/app/routes";
 
 export default function Product({params}: { params: { slug: string } }) {
   const exampleProduct = {
@@ -65,7 +67,9 @@ export default function Product({params}: { params: { slug: string } }) {
           regularPrice={exampleProduct.regularPrice}
           lowestPrice={exampleProduct.lowestPrice}
         />
-        <Button>
+        <Button
+          linkTo={productModalRoute(exampleProduct.id)}
+        >
           <FontAwesomeIcon
             icon={faCartPlus}
             style={{
@@ -84,6 +88,7 @@ export default function Product({params}: { params: { slug: string } }) {
             Niedostępny
           </>}
       </div>
+      <ProductModal/>
     </>
   );
 };
