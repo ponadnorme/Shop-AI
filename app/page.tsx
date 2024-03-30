@@ -2,8 +2,10 @@ import {ProductType} from "@/app/components/Product/types";
 import {Product} from "@/app/components/Product";
 import {ProductModal} from "@/app/components/Product/ProductModal";
 
-async function getTest() {
-  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/test`);
+async function getTest(productSlug: string) {
+  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
+    cache: 'no-store',
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch');
   }
@@ -11,35 +13,9 @@ async function getTest() {
   return response.json();
 }
 
-export default async function Home() {
-  await getTest();
-
-  const exampleProduct = {
-    title: 'test',
-    images: [
-      {
-        id: 'id',
-        isMain: true,
-        variants: [
-          {
-            variant: 'original',
-            url: '/sample-image.png',
-          },
-        ],
-      },
-    ],
-    features: [],
-    lowestPrice: 12.99,
-    price: 12.99,
-    tag: 'Bestseller',
-    rating: 6,
-    ratingCount: 3,
-    bestRating: 6,
-    quantity: 99,
-    slug: 'product-slug',
-    regularPrice: 22.49,
-    id: 'stringified',
-  };
+export default async function HomePage() {
+  const productData = await getTest('krolik-3d-skarbonka-do-malowania-artbunny-krainapolapinki');
+  const exampleProduct = productData.data;
 
   return (
     <>
