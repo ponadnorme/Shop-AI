@@ -1,1 +1,1 @@
-import '@smastrom/react-rating/style.css'
+import '@smastrom/react-rating/style.css';

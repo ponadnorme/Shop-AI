@@ -1,14 +1,14 @@
 'use client';
 
-import {useSearchParams, useRouter} from "next/navigation";
+import {useSearchParams, useRouter} from 'next/navigation';
 import {
   CloseModalElement,
   ModalContentElement,
   ModalElement,
   ModalHeaderElement,
-} from "@/app/components/Product/ProductModal/styles";
-import {faXmark} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+} from '@/app/components/Product/ProductModal/styles';
+import {faXmark} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export const ProductModal = () => {
   const searchParams = useSearchParams();
@@ -47,4 +47,4 @@ export const ProductModal = () => {
       </ModalElement>
     </>
   );
-}
+};

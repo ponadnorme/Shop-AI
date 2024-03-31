@@ -1,11 +1,11 @@
-import {ImageGalleryAi} from "@/app/components/Product/ImageGalleryAi";
-import {Rating} from "@/app/components/Rating";
-import {Price} from "@/app/components/Product/Price";
-import {Button} from "@/app/components/Button";
-import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {ProductModal} from "@/app/components/Product/ProductModal";
-import {productModalRoute} from "@/app/routes";
+import {ImageGalleryAi} from '@/app/components/Product/ImageGalleryAi';
+import {Rating} from '@/app/components/Rating';
+import {Price} from '@/app/components/Product/Price';
+import {Button} from '@/app/components/Button';
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {ProductModal} from '@/app/components/Product/ProductModal';
+import {productModalRoute} from '@/app/routes';
 
 async function getTest(productSlug: string) {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
@@ -18,7 +18,9 @@ async function getTest(productSlug: string) {
   return response.json();
 }
 
-export default async function ProductPage({params}: { params: { slug: string } }) {
+export default async function ProductPage({params}: {
+  params: { slug: string }
+}) {
   const productData = await getTest(params.slug);
   const exampleProduct = productData.data;
 

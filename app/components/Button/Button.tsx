@@ -1,6 +1,6 @@
-import {ButtonElement} from "@/app/components/Button/styles";
-import Link from "next/link";
-import React from "react";
+import {ButtonElement} from '@/app/components/Button/styles';
+import Link from 'next/link';
+import React from 'react';
 
 export const Button = ({linkTo, children}: {
   linkTo?: string,

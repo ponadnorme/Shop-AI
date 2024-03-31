@@ -1,6 +1,6 @@
 'use client';
 
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const ProductImageElement = styled.img`
   display: block;

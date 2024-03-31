@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type {Metadata} from 'next';
+import {Inter} from 'next/font/google';
+import './globals.css';
 
-const interFont = Inter({ subsets: ["latin"] });
+const interFont = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: 'Shop AI',

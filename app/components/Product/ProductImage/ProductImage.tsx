@@ -1,9 +1,9 @@
 'use client';
 
-import {ProductImageElement} from "./styles";
-import Link from "next/link";
-import {SyntheticEvent} from "react";
-import {ImageVariantType} from "@/app/components/Product/types";
+import {ProductImageElement} from './styles';
+import Link from 'next/link';
+import {SyntheticEvent} from 'react';
+import {ImageVariantType} from '@/app/components/Product/types';
 
 const handleProductImageError = (event: SyntheticEvent): void => {
   const element: HTMLImageElement = event.currentTarget as HTMLImageElement;
@@ -66,7 +66,7 @@ const ProductImage = ({alt = '', images, linkTo}: {
 
   const element = <figure>
     <ProductImageElement
-      loading='lazy'
+      loading="lazy"
       alt={alt}
       src={process.env.NEXT_PUBLIC_PRODUCT_FALLBACK_IMAGE}
       srcSet={srcSet}

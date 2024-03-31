@@ -1,1 +1,3 @@
-export {ImageGalleryAi} from "@/app/components/Product/ImageGalleryAi/ImageGalleryAi";
+export {
+  ImageGalleryAi
+} from '@/app/components/Product/ImageGalleryAi/ImageGalleryAi';

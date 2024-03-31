@@ -1,6 +1,6 @@
-import {ProductType} from "@/app/components/Product/types";
-import {Product} from "@/app/components/Product";
-import {ProductModal} from "@/app/components/Product/ProductModal";
+import {ProductType} from '@/app/components/Product/types';
+import {Product} from '@/app/components/Product';
+import {ProductModal} from '@/app/components/Product/ProductModal';
 
 async function getTest(productSlug: string) {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {

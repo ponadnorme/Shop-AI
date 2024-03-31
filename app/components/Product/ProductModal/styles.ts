@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const ModalElement = styled.div`
   align-items: center;
@@ -27,7 +27,7 @@ export const ModalHeaderElement = styled.div`
   display: flex;
   gap: 16px;
   justify-content: end;
-  
+
   > span {
     align-self: center;
     flex: 1;

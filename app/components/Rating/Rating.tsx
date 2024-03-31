@@ -1,7 +1,7 @@
 'use client';
 
-import {Rating as RatingPlugin} from "@smastrom/react-rating";
-import "./styles";
+import {Rating as RatingPlugin} from '@smastrom/react-rating';
+import './styles';
 
 export const Rating = ({rating}: {
   rating: number,

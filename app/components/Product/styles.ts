@@ -1,7 +1,7 @@
 'use client';
 
-import styled from "@emotion/styled";
-import {ButtonElement} from "@/app/components/Button/styles";
+import styled from '@emotion/styled';
+import {ButtonElement} from '@/app/components/Button/styles';
 
 export const ProductElement = styled.div`
   background: #fff;
@@ -13,11 +13,11 @@ export const ProductElement = styled.div`
   padding: 32px 16px 16px;
   position: relative;
   transition: box-shadow .2s;
-  
+
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 0 2px 1px rgba(0, 0, 0, 0.1);
   }
-`
+`;
 
 export const ImageWrapperElement = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const ImageWrapperElement = styled.div`
     display: block;
     height: 100%;
   }
-`
+`;
 
 export const BottomWrapperElement = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ export const BottomWrapperElement = styled.div`
   justify-content: space-between;
   margin-top: 12px;
   min-height: 100px;
-  
+
   h2 {
     display: -webkit-box;
     font-weight: normal;
@@ -47,7 +47,7 @@ export const BottomWrapperElement = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
-`
+`;
 
 export const PurchaseWrapperElement = styled.div`
   align-items: center;
@@ -59,11 +59,11 @@ export const PurchaseWrapperElement = styled.div`
     font-size: 20px;
     font-weight: bold;
   }
-  
+
   ${ButtonElement} {
     padding: 6px;
   }
-`
+`;
 
 export const TagElement = styled.span`
   border: 1px solid #333;
@@ -73,4 +73,4 @@ export const TagElement = styled.span`
   font-weight: 500;
   position: absolute;
   top: 8px;
-`
+`;

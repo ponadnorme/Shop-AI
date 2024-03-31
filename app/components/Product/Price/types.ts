@@ -1,4 +1,4 @@
 export enum PriceElementVariantEnum {
-  bold = "bold",
-  normal = "normal",
+  bold = 'bold',
+  normal = 'normal',
 }

@@ -2,7 +2,7 @@ import {NavbarElement} from '@/app/components/Navbar/styles';
 import Link from 'next/link';
 import {buildRoute, Pages} from '@/app/routes';
 
-async function fetchMainMenu () {
+async function fetchMainMenu() {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/menu/main`);
   if (!response.ok) {
     throw new Error('Failed to fetch main menu');

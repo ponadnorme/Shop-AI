@@ -4,19 +4,19 @@ import {
   ProductElement,
   PurchaseWrapperElement,
   TagElement,
-} from "@/app/components/Product/styles";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCartPlus} from "@fortawesome/free-solid-svg-icons";
-import {Price} from "@/app/components/Product/Price"
-import {ProductImage} from "@/app/components/Product/ProductImage";
+} from '@/app/components/Product/styles';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
+import {Price} from '@/app/components/Product/Price';
+import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
   getMainImageVariants,
-} from "@/app/components/Product/ProductImage/utils";
-import {PriceElementVariantEnum} from "@/app/components/Product/Price/types";
-import {ProductType} from "@/app/components/Product/types";
-import Link from "next/link";
-import {buildRoute, Pages, productModalRoute} from "@/app/routes";
-import {Button} from "@/app/components/Button";
+} from '@/app/components/Product/ProductImage/utils';
+import {PriceElementVariantEnum} from '@/app/components/Product/Price/types';
+import {ProductType} from '@/app/components/Product/types';
+import Link from 'next/link';
+import {buildRoute, Pages, productModalRoute} from '@/app/routes';
+import {Button} from '@/app/components/Button';
 
 export const Product = ({product}: {
   product: ProductType,
@@ -44,7 +44,10 @@ export const Product = ({product}: {
               {product.title}
             </Link>
           </h2>
-          <PurchaseWrapperElement itemProp="offers" itemScope itemType="https://schema.org/Offer">
+          <PurchaseWrapperElement
+            itemProp="offers" itemScope
+            itemType="https://schema.org/Offer"
+          >
             <Price
               price={product.price}
               regularPrice={product.regularPrice}
@@ -67,4 +70,4 @@ export const Product = ({product}: {
       </ProductElement>
     </>
   );
-}
+};

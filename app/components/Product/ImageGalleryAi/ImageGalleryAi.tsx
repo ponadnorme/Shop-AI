@@ -1,13 +1,15 @@
 'use client';
 
-import {ImageType} from "@/app/components/Product/types";
-import {ProductImage} from "@/app/components/Product/ProductImage";
+import {ImageType} from '@/app/components/Product/types';
+import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
   getMainImageVariants
-} from "@/app/components/Product/ProductImage/utils";
-import {ThumbnailsElement} from "@/app/components/Product/ImageGalleryAi/styles";
-import Swipeable from "@/app/components/Swipeable/Swipeable";
-import useSWR from "swr";
+} from '@/app/components/Product/ProductImage/utils';
+import {
+  ThumbnailsElement
+} from '@/app/components/Product/ImageGalleryAi/styles';
+import Swipeable from '@/app/components/Swipeable/Swipeable';
+import useSWR from 'swr';
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -15,7 +17,10 @@ const fetcher = async (url: string) => {
   return data;
 };
 
-export const ImageGalleryAi = ({images, title}: {images: Array<ImageType>, title: string}) => {
+export const ImageGalleryAi = ({images, title}: {
+  images: Array<ImageType>,
+  title: string
+}) => {
   const mainImageVariants = getMainImageVariants(images);
 
   const {data, error} = useSWR('/api/test', fetcher);

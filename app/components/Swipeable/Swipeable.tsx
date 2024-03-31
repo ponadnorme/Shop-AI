@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useRef} from "react";
+import React, {useRef} from 'react';
 
 const Swipeable = ({children}: {
   children: React.ReactNode,
@@ -90,7 +90,11 @@ const Swipeable = ({children}: {
         touchAction: 'pan-x',
       }}
     >
-      <div ref={contentRef} style={{ display: 'flex', transition: 'transform 0.3s ease-out', minWidth: 'max-content' }}>
+      <div ref={contentRef} style={{
+        display: 'flex',
+        transition: 'transform 0.3s ease-out',
+        minWidth: 'max-content',
+      }}>
         {children}
       </div>
     </div>
