@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
-import './globals.css';
+import {GlobalStyles} from '@/app/components/GlobalStyles/GlobalStyles';
 
 const interFont = Inter({subsets: ['latin']});
 
@@ -14,7 +14,10 @@ export default function RootLayout({children}: Readonly<{
 }>) {
   return (
     <html lang="pl">
-    <body className={interFont.className}>{children}</body>
+    <body className={interFont.className}>
+    <GlobalStyles/>
+    {children}
+    </body>
     </html>
   );
 }
