@@ -10,3 +10,13 @@ export const NavbarElement = styled.nav`
   width: 100%;
   z-index: 100;
 `;
+
+export const LogoElement = styled.div`
+  height: 50px;
+  
+  img {
+    display: block;
+    height: 100%;
+    width: auto;
+  }
+`;

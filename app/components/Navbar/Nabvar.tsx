@@ -1,6 +1,12 @@
-import {NavbarElement} from '@/app/components/Navbar/styles';
+import {
+  LogoElement,
+  NavbarElement
+} from '@/app/components/Navbar/styles';
 import Link from 'next/link';
 import {buildRoute, Pages} from '@/app/routes';
+import logo from '@/app/assets/images/logo.png';
+import Image from 'next/image';
+import {MainMenu} from '@/app/components/Navbar/MainMenu/MainMenu';
 
 async function fetchMainMenu() {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/menu/main`);
@@ -15,10 +21,15 @@ export const Navbar = async () => {
 
   return (
     <NavbarElement>
-      <Link href={buildRoute(Pages.home)}>Home</Link>
-      {!!mainMenu && mainMenu.data.map((category: any) => (
-        <div key={category.id}>{category.name}</div>
-      ))}
+      <LogoElement>
+        <Link href={buildRoute(Pages.home)}>
+          <Image
+            src={logo}
+            alt={'Sklep'}
+          />
+        </Link>
+      </LogoElement>
+      <MainMenu mainMenu={mainMenu.data}/>
     </NavbarElement>
   );
 };
