@@ -1,9 +1,10 @@
 import {ProductType} from '@/app/components/Product/types';
 import {Product} from '@/app/components/Product';
 import {ProductModal} from '@/app/components/Product/ProductModal';
+import Swipeable from '@/app/components/Swipeable/Swipeable';
 
-async function getTest(productSlug: string) {
-  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
+async function getProducts() {
+  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/list/products`, {
     cache: 'no-store',
   });
   if (!response.ok) {
@@ -14,8 +15,7 @@ async function getTest(productSlug: string) {
 }
 
 export default async function HomePage() {
-  const productData = await getTest('krolik-3d-skarbonka-do-malowania-artbunny-krainapolapinki');
-  const exampleProduct = productData.data;
+  const products = await getProducts();
 
   return (
     <>
@@ -27,9 +27,14 @@ export default async function HomePage() {
         margin: '0 auto',
         padding: '32px 0',
       }}>
-        <Product
-          product={exampleProduct as ProductType}
-        />
+        <Swipeable>
+          {products.data.map((product: ProductType) => (
+            <Product
+              product={product}
+              key={product.id}
+            />
+          ))}
+        </Swipeable>
       </div>
       <ProductModal/>
     </>
