@@ -10,15 +10,24 @@ import './styles';
 export const ProductSliderAi = ({items}: { items: ProductType[] }) => {
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={1}
       centeredSlides={false}
       grabCursor={true}
       breakpoints={{
-        769: {
+        420: {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+        },
+        660: {
+          slidesPerView: 3,
+          slidesPerGroup: 3,
+        },
+        880: {
           slidesPerView: 4,
           slidesPerGroup: 4,
         },
       }}
+      breakpointsBase={'container'}
       spaceBetween={8}
       navigation={true}
       pagination={{

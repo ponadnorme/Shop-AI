@@ -8,7 +8,9 @@ export const globalStyles = css`
   }
 
   html, body {
+    margin: 0;
     min-width: 360px;
+    padding: 0;
   }
 
   body {

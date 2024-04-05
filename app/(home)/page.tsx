@@ -2,6 +2,7 @@ import {ProductModal} from '@/app/components/Product/ProductModal';
 import {
   ProductSliderAi
 } from '@/app/components/ProductSliderAi/ProductSliderAi';
+import {CenteredContentContainerElement} from '@/app/styles/common';
 
 async function getProducts() {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/list/products`, {
@@ -21,13 +22,9 @@ export default async function HomePage() {
   return (
     <>
       <h1>Shop AI</h1>
-      <div style={{
-        width: 1200,
-        margin: '0 auto',
-        padding: '32px 0',
-      }}>
+      <CenteredContentContainerElement>
         <ProductSliderAi items={productsList}/>
-      </div>
+      </CenteredContentContainerElement>
       <ProductModal/>
     </>
   );
