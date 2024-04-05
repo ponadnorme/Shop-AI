@@ -21,8 +21,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <h1>Shop AI</h1>
       <CenteredContentContainerElement>
+        <h1>Shop AI - Twój nagłówek</h1>
         <ProductSliderAi items={productsList}/>
       </CenteredContentContainerElement>
       <ProductModal/>

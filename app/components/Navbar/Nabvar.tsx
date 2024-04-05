@@ -1,6 +1,7 @@
 import {
   LogoElement,
-  NavbarElement
+  NavbarElement,
+  NavbarSpaceFillElement,
 } from '@/app/components/Navbar/styles';
 import Link from 'next/link';
 import {buildRoute, Pages} from '@/app/routes';
@@ -21,18 +22,21 @@ export const Navbar = async () => {
   const mainMenu = await fetchMainMenu();
 
   return (
-    <NavbarElement>
-      <CenteredContentContainerElement>
-        <LogoElement>
-          <Link href={buildRoute(Pages.home)}>
-            <Image
-              src={logo}
-              alt={'Sklep'}
-            />
-          </Link>
-        </LogoElement>
-        <MainMenu mainMenu={mainMenu.data}/>
-      </CenteredContentContainerElement>
-    </NavbarElement>
+    <>
+      <NavbarElement>
+        <CenteredContentContainerElement>
+          <LogoElement>
+            <Link href={buildRoute(Pages.home)}>
+              <Image
+                src={logo}
+                alt={'Sklep'}
+              />
+            </Link>
+          </LogoElement>
+          <MainMenu mainMenu={mainMenu.data}/>
+        </CenteredContentContainerElement>
+      </NavbarElement>
+      <NavbarSpaceFillElement/>
+    </>
   );
 };

@@ -20,3 +20,7 @@ export const LogoElement = styled.div`
     width: auto;
   }
 `;
+
+export const NavbarSpaceFillElement = styled.div`
+  height: 80px;
+`;
