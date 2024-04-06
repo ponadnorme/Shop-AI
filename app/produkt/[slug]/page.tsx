@@ -4,7 +4,6 @@ import {Price} from '@/app/components/Product/Price';
 import {Button} from '@/app/components/Button';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {ProductModal} from '@/app/components/Product/ProductModal';
 import {productModalRoute} from '@/app/routes';
 
 async function getTest(productSlug: string) {
@@ -66,7 +65,6 @@ export default async function ProductPage({params}: {
             Niedostępny
           </>}
       </div>
-      <ProductModal/>
     </>
   );
 };
