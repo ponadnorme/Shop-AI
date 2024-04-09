@@ -17,4 +17,9 @@ export const globalStyles = css`
     background: #f6f6f6;
     color: #222;
   }
+  
+  figure {
+    margin: 0;
+    padding: 0;
+  }
 `;

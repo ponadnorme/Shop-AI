@@ -1,8 +1,16 @@
 'use client';
 
-export const ProductsResult = ({initialProductsList}: {initialProductsList: any}) => {
+import {ProductsContainer} from '@/app/produkty/components/ProductsContainer';
+
+export const ProductsResult = ({initialProductsList}: {
+  initialProductsList: any
+}) => {
   return <>
-    <div>Filtry</div>
-    <div>Lista produktów</div>
-  </>
+    <div>
+      <h1>Lista produktów</h1>
+      <ProductsContainer
+        products={initialProductsList}
+      />
+    </div>
+  </>;
 };
