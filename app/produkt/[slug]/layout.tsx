@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import {Navbar} from '@/app/components/Navbar/Nabvar';
+import {Navbar} from '@/app/components/Navbar/Navbar';
 import {ProductModal} from '@/app/components/Product/ProductModal';
 import {CenteredContentContainerElement} from '@/app/styles/common';
 

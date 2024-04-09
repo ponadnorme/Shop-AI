@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import {Navbar} from '@/app/components/Navbar/Nabvar';
+import {Navbar} from '@/app/components/Navbar/Navbar';
 
 export const metadata: Metadata = {
   title: 'Strona główna - Shop AI',
