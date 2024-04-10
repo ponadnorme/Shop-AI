@@ -17,6 +17,11 @@ export const ProductElement = styled.div`
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 0 2px 1px rgba(0, 0, 0, 0.1);
   }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const ImageWrapperElement = styled.div`
@@ -61,6 +66,7 @@ export const PurchaseWrapperElement = styled.div`
   }
 
   ${ButtonElement} {
+    color: #fff;
     padding: 6px;
   }
 `;

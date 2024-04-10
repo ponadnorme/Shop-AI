@@ -30,7 +30,7 @@ export const ProductsContainer = (
             ))
           ) : (
             emptyListPlaceholder !== undefined
-              ? {emptyListPlaceholder}
+              ? emptyListPlaceholder
               : 'Brak produktów do pokazania.'
           )
         ) : (
