@@ -22,7 +22,8 @@
     "react-loader-spinner": "^6.1.6",
     "sharp": "^0.33.3",
     "swiper": "^11.1.0",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
