@@ -3,7 +3,7 @@
 import {ProductImageElement} from './styles';
 import Link from 'next/link';
 import {SyntheticEvent} from 'react';
-import {ImageVariantType} from '@/app/components/Product/types';
+import {ImageVariantType} from '@/app/store/api/types';
 
 const handleProductImageError = (event: SyntheticEvent): void => {
   const element: HTMLImageElement = event.currentTarget as HTMLImageElement;

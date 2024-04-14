@@ -1,6 +1,5 @@
 'use client';
 
-import {ImageType} from '@/app/components/Product/types';
 import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
   getMainImageVariants
@@ -10,6 +9,7 @@ import {
 } from '@/app/components/Product/ImageGalleryAi/styles';
 import Swipeable from '@/app/components/Swipeable/Swipeable';
 import useSWR from 'swr';
+import {ImageType} from '@/app/store/api/types';
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);

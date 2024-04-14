@@ -1,11 +1,11 @@
 'use client';
 
-import {ProductType} from '@/app/components/Product/types';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Pagination} from 'swiper/modules';
 import React from 'react';
 import {Product} from '@/app/components/Product';
 import './styles';
+import {ProductType} from '@/app/store/api/types';
 
 export const ProductSliderAi = ({items}: { items: ProductType[] }) => {
   return (

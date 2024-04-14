@@ -13,10 +13,10 @@ import {
   getMainImageVariants,
 } from '@/app/components/Product/ProductImage/utils';
 import {PriceElementVariantEnum} from '@/app/components/Product/Price/types';
-import {ProductType} from '@/app/components/Product/types';
 import Link from 'next/link';
 import {buildRoute, Pages, productModalRoute} from '@/app/routes';
 import {Button} from '@/app/components/Button';
+import {ProductType} from '@/app/store/api/types';
 
 export const Product = ({product}: {
   product: ProductType,
