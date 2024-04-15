@@ -9,6 +9,7 @@ import logo from '@/app/assets/images/logo.png';
 import Image from 'next/image';
 import {MainMenu} from '@/app/components/Navbar/MainMenu/MainMenu';
 import {CenteredContentContainerElement} from '@/app/styles/common';
+import {ProductsSearch} from '@/app/components/ProductsSearch/ProductsSearch';
 
 async function fetchMainMenu() {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/menu/main`);
@@ -33,6 +34,7 @@ export const Navbar = async () => {
               />
             </Link>
           </LogoElement>
+          <ProductsSearch/>
           <MainMenu mainMenu={mainMenu.data}/>
         </CenteredContentContainerElement>
       </NavbarElement>

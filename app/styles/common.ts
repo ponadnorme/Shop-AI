@@ -15,3 +15,9 @@ export const CenteredContentContainerElement = styled.div`
     padding-right: 0;
   }
 `;
+
+export const ErrorMessageElement = styled.p`
+  color: crimson;
+  font-size: 14px;
+  padding: 0 0 8px;
+`;
