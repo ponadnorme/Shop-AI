@@ -1,0 +1,7 @@
+.swiper {
+  user-select: none;
+}
+
+.swiper-slide {
+  width: fit-content;
+}

@@ -2,50 +2,74 @@
 
 import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
+  getMainImageId,
   getMainImageVariants
 } from '@/app/components/Product/ProductImage/utils';
 import {
   ThumbnailsElement
 } from '@/app/components/Product/ImageGalleryAi/styles';
-import Swipeable from '@/app/components/Swipeable/Swipeable';
-import useSWR from 'swr';
-import {ImageType} from '@/app/store/api/types';
+import {ImageType, ImageVariantType} from '@/app/store/api/types';
+import {productImagesGalleryRoute} from '@/app/routes';
+import {useState} from 'react';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {FreeMode} from 'swiper/modules';
 
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
+type ImageGalleryAiPropsType = {
+  images: Array<ImageType>,
+  title: string,
+  productId: string,
 };
 
-export const ImageGalleryAi = ({images, title}: {
-  images: Array<ImageType>,
-  title: string
-}) => {
+export const ImageGalleryAi = (
+  {
+    images,
+    title,
+    productId
+  }: ImageGalleryAiPropsType) => {
   const mainImageVariants = getMainImageVariants(images);
+  const mainImageId = getMainImageId(images);
 
-  const {data, error} = useSWR('/api/test', fetcher);
+  const [selectedImageVariants, setSelectedImageVariants] = useState(mainImageVariants as ImageVariantType[]);
+  const [selectedImageId, setSelectedImageId] = useState(mainImageId as string);
+
+  const updateMainImage = (imageType: ImageType) => {
+    setSelectedImageId(imageType.id);
+    setSelectedImageVariants(imageType.variants);
+  };
+
+  if (!mainImageId) {
+    return <></>;
+  }
 
   return (
     <>
       <ProductImage
-        images={mainImageVariants}
+        images={selectedImageVariants}
         alt={title}
+        linkTo={productImagesGalleryRoute(productId, selectedImageId)}
       />
       <ThumbnailsElement>
-        <Swipeable>
+        <Swiper
+          freeMode={true}
+          modules={[FreeMode]}
+          spaceBetween={2}
+          slidesPerView={'auto'}
+        >
           {images.map((imageType) => {
             return (
-              <a
+              <SwiperSlide
+                role={'button'}
                 key={imageType.id}
+                onClick={() => updateMainImage(imageType)}
               >
                 <ProductImage
                   images={imageType.variants}
                   alt={title}
                 />
-              </a>
+              </SwiperSlide>
             );
           })}
-        </Swipeable>
+        </Swiper>
       </ThumbnailsElement>
     </>
   );

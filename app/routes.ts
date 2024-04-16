@@ -17,3 +17,7 @@ export const buildRoute = (page: Pages, params: Array<string> = ['']) => {
 export const productModalRoute = (productId: string) => {
   return `?productModal&id=${productId}`;
 };
+
+export const productImagesGalleryRoute = (productId: string, imageId: string) => {
+  return `?imageGallery&id=${productId}&image=${imageId}`;
+};
