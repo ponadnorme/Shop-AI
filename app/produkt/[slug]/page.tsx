@@ -5,6 +5,9 @@ import {Button} from '@/app/components/Button';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {productModalRoute} from '@/app/routes';
+import {
+  ImageGalleryAiModal
+} from '@/app/components/Product/ImageGalleryAi/Modal/ImageGalleryAiModal';
 
 async function getTest(productSlug: string) {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
@@ -29,6 +32,7 @@ export default async function ProductPage({params}: {
       <ImageGalleryAi
         images={exampleProduct.images}
         title={exampleProduct.title}
+        productId={exampleProduct.id}
       />
       <h1>{exampleProduct.title}</h1>
       <div style={{
@@ -65,6 +69,7 @@ export default async function ProductPage({params}: {
             Niedostępny
           </>}
       </div>
+      <ImageGalleryAiModal/>
     </>
   );
 };

@@ -1,19 +1,19 @@
 'use client';
 
-import {useSearchParams, useRouter} from 'next/navigation';
 import {Modal} from '@/app/components/Modal/Modal';
+import {useSearchParams} from 'next/navigation';
 
-export const ProductModal = () => {
+export const ImageGalleryAiModal = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
 
-  if (searchParams.get('productModal') === null
+  if (searchParams.get('imageGallery') === null
     || productId === null
   ) {
     return <></>;
   }
 
   return (
-    <Modal title={'Karta produktu'}/>
+    <Modal title={`Galeria dla produktu: ${productId}`}/>
   );
 };
