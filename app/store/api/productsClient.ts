@@ -1,10 +1,8 @@
 'use client';
 
 import useSWR from 'swr';
-import {ProductType} from '@/app/store/api/types';
-
-// @ts-ignore
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+import {ImageType, ProductType} from '@/app/store/api/types';
+import {fetcher} from '@/app/store/api/requestProcessor';
 
 type ProductsResponseType = {
   products: ProductType[] | null,
@@ -47,5 +45,21 @@ export const useProducts = ({category, limit, query}: {
     productsIsLoading: isLoading,
     productsError: error,
     productsErrors: data?.errors,
+  };
+};
+
+type ProductImagesResponseType = {
+  productImages: ImageType[] | null,
+  productImagesError: Error | undefined,
+  productImagesIsLoading: boolean,
+};
+
+export const useProductImages = (productId: string, shouldFetch: boolean): ProductImagesResponseType => {
+  const {data, error, isLoading} = useSWR(shouldFetch ? `/api/image/products/${productId}` : null, fetcher);
+
+  return {
+    productImages: !!data ? data.data : null as ImageType[] | null,
+    productImagesError: error,
+    productImagesIsLoading: isLoading,
   };
 };

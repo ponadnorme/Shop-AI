@@ -1,6 +1,6 @@
 export type ProductType = {
   id: string,
-  images: Array<ImageType>,
+  images: ImageType[],
   price: number,
   quantity: number,
   title: string,

@@ -1,15 +1,29 @@
 'use client';
 
 import {Modal} from '@/app/components/Modal/Modal';
-import {useSearchParams} from 'next/navigation';
+import {ReadonlyURLSearchParams, useSearchParams} from 'next/navigation';
+import {useProductImages} from '@/app/store/api/productsClient';
+import {useEffect, useState} from 'react';
+
+const hasRequiredParameters = (searchParams: ReadonlyURLSearchParams) => {
+  const productId = searchParams.get('id');
+
+  return searchParams.get('imageGallery') !== null
+    && productId !== null;
+};
 
 export const ImageGalleryAiModal = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
 
-  if (searchParams.get('imageGallery') === null
-    || productId === null
-  ) {
+  const [shouldFetch, setShouldFetch] = useState(false);
+  const {productImages} = useProductImages(productId as string, shouldFetch);
+
+  useEffect(() => {
+    setShouldFetch(hasRequiredParameters(searchParams));
+  }, [searchParams]);
+
+  if (!hasRequiredParameters(searchParams)) {
     return <></>;
   }
 
