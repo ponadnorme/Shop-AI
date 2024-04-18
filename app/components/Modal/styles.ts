@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import {CenteredContentContainerElement} from '@/app/styles/common';
 
 export const ModalElement = styled.div`
   align-items: center;
@@ -23,7 +24,7 @@ export const ModalContentElement = styled.div`
   width: 100%;
 `;
 
-export const ModalHeaderElement = styled.div`
+export const ModalHeaderElement = styled(CenteredContentContainerElement)`
   display: flex;
   gap: 16px;
   justify-content: end;

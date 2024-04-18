@@ -9,12 +9,15 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useRouter} from 'next/navigation';
+import {ReactNode} from 'react';
 
 type ModalPropsType = {
   title: string,
+  children: ReactNode,
+  className?: string,
 };
 
-export const Modal = ({title}: ModalPropsType) => {
+export const Modal = ({title, children, className}: ModalPropsType) => {
   const router = useRouter();
 
   const closeModal = () => {
@@ -22,7 +25,7 @@ export const Modal = ({title}: ModalPropsType) => {
   };
 
   return (
-    <ModalElement>
+    <ModalElement className={className}>
       <ModalContentElement>
         <ModalHeaderElement>
           <span>{title}</span>
@@ -37,6 +40,7 @@ export const Modal = ({title}: ModalPropsType) => {
             />
           </CloseModalElement>
         </ModalHeaderElement>
+        {children}
       </ModalContentElement>
     </ModalElement>
   );

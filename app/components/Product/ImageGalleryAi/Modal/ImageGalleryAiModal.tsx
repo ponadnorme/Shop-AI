@@ -1,9 +1,9 @@
 'use client';
 
-import {Modal} from '@/app/components/Modal/Modal';
 import {ReadonlyURLSearchParams, useSearchParams} from 'next/navigation';
 import {useProductImages} from '@/app/store/api/productsClient';
 import {useEffect, useState} from 'react';
+import {Modal} from './styles';
 
 const hasRequiredParameters = (searchParams: ReadonlyURLSearchParams) => {
   const productId = searchParams.get('id');
@@ -28,6 +28,8 @@ export const ImageGalleryAiModal = () => {
   }
 
   return (
-    <Modal title={`Galeria dla produktu: ${productId}`}/>
+    <Modal title={`Galeria dla produktu: ${productId}`}>
+      Galeria
+    </Modal>
   );
 };

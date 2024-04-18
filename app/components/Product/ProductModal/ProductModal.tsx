@@ -1,6 +1,6 @@
 'use client';
 
-import {useSearchParams, useRouter} from 'next/navigation';
+import {useSearchParams} from 'next/navigation';
 import {Modal} from '@/app/components/Modal/Modal';
 
 export const ProductModal = () => {
@@ -14,6 +14,8 @@ export const ProductModal = () => {
   }
 
   return (
-    <Modal title={'Karta produktu'}/>
+    <Modal title={'Karta produktu'}>
+      Produkt
+    </Modal>
   );
 };
