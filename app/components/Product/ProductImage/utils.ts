@@ -1,6 +1,6 @@
 import {ImageType} from '@/app/store/api/types';
 
-export function getMainImageVariants(imagesList: Array<ImageType>) {
+export function getMainImageVariants(imagesList: ImageType[]) {
   const mainImageItem = getMainImage(imagesList);
 
   return !!mainImageItem

@@ -28,6 +28,7 @@ export const ModalHeaderElement = styled(CenteredContentContainerElement)`
   display: flex;
   gap: 16px;
   justify-content: end;
+  margin-bottom: 40px;
 
   > span {
     align-self: center;

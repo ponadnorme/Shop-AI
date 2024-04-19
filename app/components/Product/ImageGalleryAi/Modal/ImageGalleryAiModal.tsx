@@ -3,7 +3,11 @@
 import {ReadonlyURLSearchParams, useSearchParams} from 'next/navigation';
 import {useProductImages} from '@/app/store/api/productsClient';
 import {useEffect, useState} from 'react';
-import {Modal} from './styles';
+import {MainImageElement, Modal, ThumbnailsElement} from './styles';
+import {ProductImage} from '@/app/components/Product/ProductImage';
+import {
+  getMainImageVariants
+} from '@/app/components/Product/ProductImage/utils';
 
 const hasRequiredParameters = (searchParams: ReadonlyURLSearchParams) => {
   const productId = searchParams.get('id');
@@ -19,9 +23,25 @@ export const ImageGalleryAiModal = () => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const {productImages} = useProductImages(productId as string, shouldFetch);
 
+  const mainImageVariants = !!productImages
+    ? getMainImageVariants(productImages)
+    : null;
+
+  const [selectedImageId, setSelectedImageId] = useState(null);
+  const [selectedImageVariants, setSelectedImageVariants] = useState(null);
+
   useEffect(() => {
     setShouldFetch(hasRequiredParameters(searchParams));
+    setSelectedImageId(searchParams.get('image'));
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!!productImages) {
+      setSelectedImageVariants(getMainImageVariants(productImages));
+    } else {
+      setSelectedImageVariants(null);
+    }
+  }, [productImages]);
 
   if (!hasRequiredParameters(searchParams)) {
     return <></>;
@@ -29,7 +49,21 @@ export const ImageGalleryAiModal = () => {
 
   return (
     <Modal title={`Galeria dla produktu: ${productId}`}>
-      Galeria
+      <MainImageElement>
+        <ProductImage
+          images={selectedImageVariants}
+          alt={'Sklep z mangami Ponadnorme'}
+        />
+      </MainImageElement>
+      <ThumbnailsElement>
+        {!!productImages && productImages.map((image) => (
+          <ProductImage
+            images={image.variants}
+            alt={'Sklep z mangami Ponadnorme'}
+            key={image.id}
+          />
+        ))}
+      </ThumbnailsElement>
     </Modal>
   );
 };
