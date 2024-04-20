@@ -41,9 +41,6 @@ export const Modal = ({title, children, className}: ModalPropsType) => {
           >
             <FontAwesomeIcon
               icon={faXmark}
-              style={{
-                height: 28,
-              }}
             />
           </CloseModalElement>
         </ModalHeaderElement>

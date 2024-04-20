@@ -55,4 +55,8 @@ export const CloseModalElement = styled.button`
   align-self: start;
   background: none;
   border: none;
+  
+  svg {
+    height: 28px;
+  }
 `;
