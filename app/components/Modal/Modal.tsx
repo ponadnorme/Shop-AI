@@ -9,7 +9,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useRouter} from 'next/navigation';
-import {ReactNode} from 'react';
+import {ReactNode, useEffect, useState} from 'react';
 
 type ModalPropsType = {
   title: string,
@@ -19,13 +19,20 @@ type ModalPropsType = {
 
 export const Modal = ({title, children, className}: ModalPropsType) => {
   const router = useRouter();
+  const [isOpened, setIsOpened] = useState(false);
+
+  useEffect(() => {
+    window.requestAnimationFrame(() => {
+      setIsOpened(true);
+    });
+  }, []);
 
   const closeModal = () => {
     router.back();
   };
 
   return (
-    <ModalElement className={className}>
+    <ModalElement className={className} isOpened={isOpened}>
       <ModalContentElement>
         <ModalHeaderElement>
           <span>{title}</span>

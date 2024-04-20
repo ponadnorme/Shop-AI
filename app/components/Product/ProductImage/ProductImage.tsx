@@ -10,11 +10,14 @@ const handleProductImageError = (event: SyntheticEvent): void => {
   element.srcset = process.env.NEXT_PUBLIC_PRODUCT_FALLBACK_IMAGE as string;
 };
 
-const ProductImage = ({alt = '', images, linkTo}: {
+type ProductImageProps = {
   alt?: string,
   images: Array<ImageVariantType> | null,
   linkTo?: string,
-}) => {
+  onClick?: () => void,
+}
+
+const ProductImage = ({alt = '', images, linkTo, onClick}: ProductImageProps) => {
   const getOriginalImageVariant = ({images}: {
     images: Array<ImageVariantType>,
   }) => {
@@ -64,6 +67,12 @@ const ProductImage = ({alt = '', images, linkTo}: {
 
   const srcSet = `${imageVariant.url} 1x`;
 
+  let imageProps = {};
+
+  if (!!onClick) {
+    imageProps['onClick'] = onClick;
+  }
+
   const element = <figure>
     <ProductImageElement
       loading="lazy"
@@ -73,6 +82,7 @@ const ProductImage = ({alt = '', images, linkTo}: {
       onError={(event) => {
         handleProductImageError(event);
       }}
+      {...imageProps}
     />
   </figure>;
 

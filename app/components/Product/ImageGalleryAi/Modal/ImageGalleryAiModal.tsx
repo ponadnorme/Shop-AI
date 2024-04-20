@@ -1,6 +1,9 @@
 'use client';
 
-import {ReadonlyURLSearchParams, useSearchParams} from 'next/navigation';
+import {
+  ReadonlyURLSearchParams,
+  useSearchParams
+} from 'next/navigation';
 import {useProductImages} from '@/app/store/api/productsClient';
 import {useEffect, useState} from 'react';
 import {MainImageElement, Modal, ThumbnailsElement} from './styles';
@@ -8,6 +11,7 @@ import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
   getMainImageVariants
 } from '@/app/components/Product/ProductImage/utils';
+import {ImageType, ImageVariantType} from '@/app/store/api/types';
 
 const hasRequiredParameters = (searchParams: ReadonlyURLSearchParams) => {
   const productId = searchParams.get('id');
@@ -27,8 +31,8 @@ export const ImageGalleryAiModal = () => {
     ? getMainImageVariants(productImages)
     : null;
 
-  const [selectedImageId, setSelectedImageId] = useState(null);
-  const [selectedImageVariants, setSelectedImageVariants] = useState(null);
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+  const [selectedImageVariants, setSelectedImageVariants] = useState<ImageVariantType[] | null>(null);
 
   useEffect(() => {
     setShouldFetch(hasRequiredParameters(searchParams));
@@ -47,8 +51,15 @@ export const ImageGalleryAiModal = () => {
     return <></>;
   }
 
+  const thumbnailClicked = (image: ImageType) => {
+    setSelectedImageVariants(image.variants);
+    setSelectedImageId(image.id);
+  };
+
   return (
-    <Modal title={`Galeria dla produktu: ${productId}`}>
+    <Modal
+      title={`Galeria dla produktu: ${productId}`}
+    >
       <MainImageElement>
         <ProductImage
           images={selectedImageVariants}
@@ -61,6 +72,7 @@ export const ImageGalleryAiModal = () => {
             images={image.variants}
             alt={'Sklep z mangami Ponadnorme'}
             key={image.id}
+            onClick={() => thumbnailClicked(image)}
           />
         ))}
       </ThumbnailsElement>

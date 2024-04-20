@@ -1,7 +1,12 @@
 import styled from '@emotion/styled';
 import {CenteredContentContainerElement} from '@/app/styles/common';
+import {css} from '@emotion/react';
 
-export const ModalElement = styled.div`
+type ModalElementProps = {
+  isOpened: boolean,
+}
+
+export const ModalElement = styled.div<ModalElementProps>`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
@@ -9,10 +14,20 @@ export const ModalElement = styled.div`
   height: 100%;
   justify-content: center;
   left: 0;
+  opacity: 0;
   position: fixed;
+  transform: scale(.5);
+  transition: transform .3s, opacity .3s, visibility .3s;
   top: 0;
+  visibility: hidden;
   width: 100%;
   z-index: 510;
+  
+  ${props => props.isOpened && css`
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+  `}
 `;
 
 export const ModalContentElement = styled.div`
