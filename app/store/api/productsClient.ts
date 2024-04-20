@@ -35,7 +35,7 @@ export const useProducts = ({category, limit, query}: {
 
   const parsedQueryParameters = new URLSearchParams(queryParameters).toString();
   const urlParameters = parsedQueryParameters ? `?${parsedQueryParameters}` : '';
-  const url = `/api/list/products${urlParameters}`;
+  const url = `/api/summary/products${urlParameters}`;
 
   const {data, error, isLoading} = useSWR(shouldFetch ? url : null, fetcher);
 
