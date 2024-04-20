@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
 import {GlobalStyles} from '@/app/components/GlobalStyles/GlobalStyles';
+import HolyLoader from 'holy-loader';
 
 const interFont = Inter({subsets: ['latin']});
 
@@ -16,6 +17,7 @@ export default function RootLayout({children}: Readonly<{
     <html lang="pl">
     <body className={interFont.className}>
     <GlobalStyles/>
+    <HolyLoader/>
     {children}
     </body>
     </html>
