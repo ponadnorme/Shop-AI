@@ -1,17 +1,17 @@
 'use client';
 
 import useSWR from 'swr';
-import {ImageType, ProductType} from '@/app/store/api/types';
+import {ErrorModelType, ImageType, ProductType} from '@/app/store/api/types';
 import {fetcher} from '@/app/store/api/requestProcessor';
 
 type ProductsResponseType = {
-  products: ProductType[] | null,
+  products: ProductType[] | null | undefined,
   productsMeta: {
     totalRows: number,
   },
   productsIsLoading: boolean,
   productsError: Error | undefined,
-  productsErrors: any,
+  productsErrors: ErrorModelType[] | null | undefined,
 };
 
 export const useProducts = ({category, limit, query}: {
@@ -40,11 +40,11 @@ export const useProducts = ({category, limit, query}: {
   const {data, error, isLoading} = useSWR(shouldFetch ? url : null, fetcher);
 
   return {
-    products: !!data ? data.data : null as ProductType[] | null,
+    products: data === null ? null : data?.data,
     productsMeta: data?.meta,
     productsIsLoading: isLoading,
     productsError: error,
-    productsErrors: data?.errors,
+    productsErrors: data === null ? null : data?.errors,
   };
 };
 

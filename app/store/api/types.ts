@@ -35,3 +35,8 @@ export type FeatureType = {
     },
   }>
 };
+
+export type ErrorModelType = {
+  title: string,
+  detail: string,
+};
