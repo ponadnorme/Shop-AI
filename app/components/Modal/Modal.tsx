@@ -1,4 +1,4 @@
-// 'use client'; Is client component. Needs 'use client' boundary.
+// 'use parent client';
 
 import {
   CloseModalElement,
