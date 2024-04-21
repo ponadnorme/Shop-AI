@@ -8,16 +8,20 @@ import {
 } from './styles';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
-import {useRouter} from 'next/navigation';
+import {
+  ReadonlyURLSearchParams,
+  useRouter,
+} from 'next/navigation';
 import {ReactNode, useEffect, useState} from 'react';
 
 type ModalPropsType = {
   title: string,
   children: ReactNode,
   className?: string,
+  queryParameters: string[],
 };
 
-export const Modal = ({title, children, className}: ModalPropsType) => {
+export const Modal = ({title, children, className, queryParameters}: ModalPropsType) => {
   const router = useRouter();
   const [isOpened, setIsOpened] = useState(false);
 
@@ -28,7 +32,14 @@ export const Modal = ({title, children, className}: ModalPropsType) => {
   }, []);
 
   const closeModal = () => {
-    router.back();
+    setIsOpened(false);
+    setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      queryParameters.forEach((parameter) => {
+        params.delete(parameter);
+      });
+      router.replace(`${window.location.pathname}?${params}`)
+    }, 300);
   };
 
   return (
@@ -48,4 +59,10 @@ export const Modal = ({title, children, className}: ModalPropsType) => {
       </ModalContentElement>
     </ModalElement>
   );
+};
+
+export const hasRequiredParameters = (searchParameters: ReadonlyURLSearchParams, parameters: string[]) => {
+  return parameters.filter((parameter) => {
+    return searchParameters.get(parameter) !== null;
+  }).length === parameters.length;
 };

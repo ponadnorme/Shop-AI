@@ -67,7 +67,7 @@ const ProductImage = ({alt = '', images, linkTo, onClick}: ProductImageProps) =>
 
   const srcSet = `${imageVariant.url} 1x`;
 
-  let imageProps = {};
+  let imageProps: any = {};
 
   if (!!onClick) {
     imageProps['onClick'] = onClick;

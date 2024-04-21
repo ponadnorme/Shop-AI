@@ -16,8 +16,7 @@ export const ModalElement = styled.div<ModalElementProps>`
   left: 0;
   opacity: 0;
   position: fixed;
-  transform: scale(.5);
-  transition: transform .3s, opacity .3s, visibility .3s;
+  transition: opacity .3s, visibility .3s;
   top: 0;
   visibility: hidden;
   width: 100%;
@@ -25,8 +24,11 @@ export const ModalElement = styled.div<ModalElementProps>`
   
   ${props => props.isOpened && css`
     opacity: 1;
-    transform: scale(1);
     visibility: visible;
+    
+    ${ModalContentElement} {
+      transform: scale(1);
+    }
   `}
 `;
 
@@ -36,6 +38,8 @@ export const ModalContentElement = styled.div`
   margin: 16px;
   max-width: 600px;
   min-width: 318px;
+  transform: scale(.5);
+  transition: transform .3s;
   width: 100%;
 `;
 

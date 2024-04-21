@@ -5,8 +5,6 @@ import {
   PurchaseWrapperElement,
   TagElement,
 } from '@/app/components/Product/styles';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {Price} from '@/app/components/Product/Price';
 import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
@@ -14,9 +12,11 @@ import {
 } from '@/app/components/Product/ProductImage/utils';
 import {PriceElementVariantEnum} from '@/app/components/Product/Price/types';
 import Link from 'next/link';
-import {buildRoute, Pages, productModalRoute} from '@/app/routes';
-import {Button} from '@/app/components/Button';
+import {buildRoute, Pages} from '@/app/routes';
 import {ProductType} from '@/app/store/api/types';
+import {
+  AddToCartButton
+} from '@/app/components/Product/AddToCartButton/AddToCartButton';
 
 export const Product = ({product}: {
   product: ProductType,
@@ -55,16 +55,7 @@ export const Product = ({product}: {
             />
             <meta itemProp="priceCurrency" content={'PLN'}/>
             <meta itemProp="price" content={product.price.toFixed(2)}/>
-            <Button
-              linkTo={productModalRoute(product.id)}
-            >
-              <FontAwesomeIcon
-                icon={faCartPlus}
-                style={{
-                  height: 28,
-                }}
-              />
-            </Button>
+            <AddToCartButton productId={product.id}/>
           </PurchaseWrapperElement>
         </BottomWrapperElement>
       </ProductElement>

@@ -1,13 +1,12 @@
 import {ImageGalleryAi} from '@/app/components/Product/ImageGalleryAi';
 import {Rating} from '@/app/components/Rating';
 import {Price} from '@/app/components/Product/Price';
-import {Button} from '@/app/components/Button';
-import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {productModalRoute} from '@/app/routes';
 import {
   ImageGalleryAiModal
 } from '@/app/components/Product/ImageGalleryAi/Modal/ImageGalleryAiModal';
+import {
+  AddToCartButton
+} from '@/app/components/Product/AddToCartButton/AddToCartButton';
 
 async function getTest(productSlug: string) {
   const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
@@ -48,18 +47,7 @@ export default async function ProductPage({params}: {
           regularPrice={exampleProduct.regularPrice}
           lowestPrice={exampleProduct.lowestPrice}
         />
-        <Button
-          linkTo={productModalRoute(exampleProduct.id)}
-        >
-          <FontAwesomeIcon
-            icon={faCartPlus}
-            style={{
-              height: 28,
-              marginRight: 6,
-            }}
-          />
-          <span>Dodaj do koszyka</span>
-        </Button>
+        <AddToCartButton productId={exampleProduct.id} buttonText={'Dodaj do koszyka'}/>
       </div>
       <div>
         {exampleProduct.quantity > 0 ? <>

@@ -13,6 +13,7 @@ import {productImagesGalleryRoute} from '@/app/routes';
 import {useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {FreeMode} from 'swiper/modules';
+import {useRouter} from 'next/navigation';
 
 type ImageGalleryAiPropsType = {
   images: Array<ImageType>,
@@ -26,6 +27,7 @@ export const ImageGalleryAi = (
     title,
     productId
   }: ImageGalleryAiPropsType) => {
+  const router = useRouter();
   const mainImageVariants = getMainImageVariants(images);
   const mainImageId = getMainImageId(images);
 
@@ -46,7 +48,9 @@ export const ImageGalleryAi = (
       <ProductImage
         images={selectedImageVariants}
         alt={title}
-        linkTo={productImagesGalleryRoute(productId, selectedImageId)}
+        onClick={() => {
+          router.replace(productImagesGalleryRoute(productId, selectedImageId));
+        }}
       />
       <ThumbnailsElement>
         <Swiper

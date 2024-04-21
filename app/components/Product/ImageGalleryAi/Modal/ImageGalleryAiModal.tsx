@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  ReadonlyURLSearchParams,
   useSearchParams
 } from 'next/navigation';
 import {useProductImages} from '@/app/store/api/productsClient';
@@ -12,17 +11,13 @@ import {
   getMainImageVariants
 } from '@/app/components/Product/ProductImage/utils';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
+import {hasRequiredParameters} from '@/app/components/Modal/Modal';
 
-const hasRequiredParameters = (searchParams: ReadonlyURLSearchParams) => {
-  const productId = searchParams.get('id');
-
-  return searchParams.get('imageGallery') !== null
-    && productId !== null;
-};
+const modalQueryParameters = ['imageGallery', 'id', 'image'];
 
 export const ImageGalleryAiModal = () => {
-  const searchParams = useSearchParams();
-  const productId = searchParams.get('id');
+  const searchParameters = useSearchParams();
+  const productId = searchParameters.get('id');
 
   const [shouldFetch, setShouldFetch] = useState(false);
   const {productImages} = useProductImages(productId as string, shouldFetch);
@@ -35,9 +30,9 @@ export const ImageGalleryAiModal = () => {
   const [selectedImageVariants, setSelectedImageVariants] = useState<ImageVariantType[] | null>(null);
 
   useEffect(() => {
-    setShouldFetch(hasRequiredParameters(searchParams));
-    setSelectedImageId(searchParams.get('image'));
-  }, [searchParams]);
+    setShouldFetch(hasRequiredParameters(searchParameters, modalQueryParameters));
+    setSelectedImageId(searchParameters.get('image'));
+  }, [searchParameters]);
 
   useEffect(() => {
     if (!!productImages) {
@@ -47,7 +42,7 @@ export const ImageGalleryAiModal = () => {
     }
   }, [productImages]);
 
-  if (!hasRequiredParameters(searchParams)) {
+  if (!hasRequiredParameters(searchParameters, modalQueryParameters)) {
     return <></>;
   }
 
@@ -59,18 +54,19 @@ export const ImageGalleryAiModal = () => {
   return (
     <Modal
       title={`Galeria dla produktu: ${productId}`}
+      queryParameters={modalQueryParameters}
     >
       <MainImageElement>
         <ProductImage
           images={selectedImageVariants}
-          alt={'Sklep z mangami Ponadnorme'}
+          alt={'Produkt'}
         />
       </MainImageElement>
       <ThumbnailsElement>
         {!!productImages && productImages.map((image) => (
           <ProductImage
             images={image.variants}
-            alt={'Sklep z mangami Ponadnorme'}
+            alt={'Produkt'}
             key={image.id}
             onClick={() => thumbnailClicked(image)}
           />

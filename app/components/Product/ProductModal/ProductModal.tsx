@@ -1,20 +1,23 @@
 'use client';
 
 import {useSearchParams} from 'next/navigation';
-import {Modal} from '@/app/components/Modal/Modal';
+import {hasRequiredParameters, Modal} from '@/app/components/Modal/Modal';
+
+const modalQueryParameters = ['productModal', 'id'];
 
 export const ProductModal = () => {
-  const searchParams = useSearchParams();
-  const productId = searchParams.get('id');
+  const searchParameters = useSearchParams();
+  const productId = searchParameters.get('id');
 
-  if (searchParams.get('productModal') === null
-    || productId === null
-  ) {
+  if (!hasRequiredParameters(searchParameters, modalQueryParameters)) {
     return <></>;
   }
 
   return (
-    <Modal title={'Karta produktu'}>
+    <Modal
+      title={'Karta produktu'}
+      queryParameters={modalQueryParameters}
+    >
       Produkt
     </Modal>
   );
