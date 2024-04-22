@@ -9,11 +9,10 @@ import {
   ThumbnailsElement
 } from '@/app/components/Product/ImageGalleryAi/styles';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
-import {productImagesGalleryRoute} from '@/app/routes';
 import {useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {FreeMode} from 'swiper/modules';
-import {useRouter} from 'next/navigation';
+import {useSessionStorage} from 'usehooks-ts';
 
 type ImageGalleryAiPropsType = {
   images: Array<ImageType>,
@@ -27,7 +26,7 @@ export const ImageGalleryAi = (
     title,
     productId
   }: ImageGalleryAiPropsType) => {
-  const router = useRouter();
+  const [, setImageGalleryModal] = useSessionStorage('imageGalleryModal', null);
   const mainImageVariants = getMainImageVariants(images);
   const mainImageId = getMainImageId(images);
 
@@ -49,7 +48,10 @@ export const ImageGalleryAi = (
         images={selectedImageVariants}
         alt={title}
         onClick={() => {
-          router.replace(productImagesGalleryRoute(productId, selectedImageId));
+          setImageGalleryModal({
+            productId,
+            imageId: selectedImageId,
+          });
         }}
       />
       <ThumbnailsElement>

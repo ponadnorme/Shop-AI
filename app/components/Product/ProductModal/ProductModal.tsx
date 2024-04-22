@@ -1,22 +1,27 @@
 'use client';
 
-import {useSearchParams} from 'next/navigation';
-import {hasRequiredParameters, Modal} from '@/app/components/Modal/Modal';
+import {
+  hasRequiredSessionValues,
+  Modal
+} from '@/app/components/Modal/Modal';
+import {useSessionStorage} from 'usehooks-ts';
 
-const modalQueryParameters = ['productModal', 'id'];
+const modalSessionParameters = ['productId'];
 
 export const ProductModal = () => {
-  const searchParameters = useSearchParams();
-  const productId = searchParameters.get('id');
+  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage('productSummaryModal');
+  const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 
-  if (!hasRequiredParameters(searchParameters, modalQueryParameters)) {
+  if (!hasRequiredSessionValues(modalSessionValue, modalSessionParameters)) {
     return <></>;
   }
 
   return (
     <Modal
-      title={'Karta produktu'}
-      queryParameters={modalQueryParameters}
+      title={`Karta produktu ${productId}`}
+      onAfterClose={() => {
+        removeModalSessionValue();
+      }}
     >
       Produkt
     </Modal>

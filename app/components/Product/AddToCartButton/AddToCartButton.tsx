@@ -1,10 +1,9 @@
 'use client';
 
-import {productModalRoute} from '@/app/routes';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
-import {useRouter} from 'next/navigation';
 import {ButtonElement} from './styles';
+import {useSessionStorage} from 'usehooks-ts';
 
 type AddToCartButtonProps = {
   productId: string,
@@ -12,11 +11,13 @@ type AddToCartButtonProps = {
 };
 
 export const AddToCartButton = ({productId, buttonText}: AddToCartButtonProps) => {
-  const router = useRouter();
+  const [, setProductSummaryModal] = useSessionStorage('productSummaryModal', null);
   return (
     <ButtonElement
       onClick={() => {
-        router.replace(productModalRoute(productId));
+        setProductSummaryModal({
+          productId,
+        });
       }}
     >
       <FontAwesomeIcon icon={faCartPlus}/>

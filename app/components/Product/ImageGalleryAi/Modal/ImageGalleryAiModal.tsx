@@ -1,8 +1,5 @@
 'use client';
 
-import {
-  useSearchParams
-} from 'next/navigation';
 import {useProductImages} from '@/app/store/api/productsClient';
 import {useEffect, useState} from 'react';
 import {MainImageElement, Modal, ThumbnailsElement} from './styles';
@@ -11,28 +8,28 @@ import {
   getMainImageVariants
 } from '@/app/components/Product/ProductImage/utils';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
-import {hasRequiredParameters} from '@/app/components/Modal/Modal';
+import {
+  hasRequiredSessionValues
+} from '@/app/components/Modal/Modal';
+import {useSessionStorage} from 'usehooks-ts';
 
-const modalQueryParameters = ['imageGallery', 'id', 'image'];
+const modalSessionParameters = ['productId', 'imageId'];
 
 export const ImageGalleryAiModal = () => {
-  const searchParameters = useSearchParams();
-  const productId = searchParameters.get('id');
+  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage('imageGalleryModal');
+
+  const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 
   const [shouldFetch, setShouldFetch] = useState(false);
   const {productImages} = useProductImages(productId as string, shouldFetch);
-
-  const mainImageVariants = !!productImages
-    ? getMainImageVariants(productImages)
-    : null;
 
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
   const [selectedImageVariants, setSelectedImageVariants] = useState<ImageVariantType[] | null>(null);
 
   useEffect(() => {
-    setShouldFetch(hasRequiredParameters(searchParameters, modalQueryParameters));
-    setSelectedImageId(searchParameters.get('image'));
-  }, [searchParameters]);
+    setShouldFetch(hasRequiredSessionValues(modalSessionValue, modalSessionParameters));
+    setSelectedImageId(!!modalSessionValue ? modalSessionValue.imageId : null);
+  }, [modalSessionValue]);
 
   useEffect(() => {
     if (!!productImages) {
@@ -42,7 +39,7 @@ export const ImageGalleryAiModal = () => {
     }
   }, [productImages]);
 
-  if (!hasRequiredParameters(searchParameters, modalQueryParameters)) {
+  if (!hasRequiredSessionValues(modalSessionValue, modalSessionParameters)) {
     return <></>;
   }
 
@@ -54,7 +51,9 @@ export const ImageGalleryAiModal = () => {
   return (
     <Modal
       title={`Galeria dla produktu: ${productId}`}
-      queryParameters={modalQueryParameters}
+      onAfterClose={() => {
+        removeModalSessionValue();
+      }}
     >
       <MainImageElement>
         <ProductImage
