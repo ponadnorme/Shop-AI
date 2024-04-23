@@ -12,11 +12,15 @@ import {
   hasRequiredSessionValues
 } from '@/app/components/Modal/Modal';
 import {useSessionStorage} from 'usehooks-ts';
+import {
+  ImageGalleryAIModalDataType
+} from '@/app/components/Product/ImageGalleryAi/Modal/types';
 
+export const modalSessionName = 'imageGalleryModal';
 const modalSessionParameters = ['productId', 'imageId'];
 
 export const ImageGalleryAiModal = () => {
-  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage('imageGalleryModal');
+  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage<ImageGalleryAIModalDataType | undefined>(modalSessionName, undefined);
 
   const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 
