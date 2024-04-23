@@ -1,6 +1,5 @@
 import {Metadata} from 'next';
 import {Navbar} from '@/app/components/Navbar/Navbar';
-import {ProductModal} from '@/app/components/Product/ProductModal';
 import {CenteredContentContainerElement} from '@/app/styles/common';
 
 export const metadata: Metadata = {
@@ -17,7 +16,6 @@ export default function ProductLayout({children}: Readonly<{
       <CenteredContentContainerElement as={'main'}>
         {children}
       </CenteredContentContainerElement>
-      <ProductModal/>
     </>
   );
 }

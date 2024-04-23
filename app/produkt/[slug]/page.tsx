@@ -2,9 +2,6 @@ import {ImageGalleryAi} from '@/app/components/Product/ImageGalleryAi';
 import {Rating} from '@/app/components/Rating';
 import {Price} from '@/app/components/Product/Price';
 import {
-  ImageGalleryAiModal
-} from '@/app/components/Product/ImageGalleryAi/Modal/ImageGalleryAiModal';
-import {
   AddToCartButton
 } from '@/app/components/Product/AddToCartButton/AddToCartButton';
 
@@ -57,7 +54,6 @@ export default async function ProductPage({params}: {
             Niedostępny
           </>}
       </div>
-      <ImageGalleryAiModal/>
     </>
   );
 };

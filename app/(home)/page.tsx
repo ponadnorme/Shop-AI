@@ -1,4 +1,3 @@
-import {ProductModal} from '@/app/components/Product/ProductModal';
 import {
   ProductSliderAi
 } from '@/app/components/ProductSliderAi/ProductSliderAi';
@@ -15,7 +14,6 @@ export default async function HomePage() {
         <h1>Shop AI - Twój nagłówek</h1>
         <ProductSliderAi items={productsList}/>
       </CenteredContentContainerElement>
-      <ProductModal/>
     </>
   );
 }

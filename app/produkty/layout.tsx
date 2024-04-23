@@ -1,7 +1,6 @@
 import {Metadata} from 'next';
 import {Navbar} from '@/app/components/Navbar/Navbar';
 import {CenteredContentContainerElement} from '@/app/styles/common';
-import {ProductModal} from '@/app/components/Product/ProductModal';
 
 export const metadata: Metadata = {
   title: 'Strona produktu - Shop AI',
@@ -17,7 +16,6 @@ export default function ProductsLayout({children}: Readonly<{
       <CenteredContentContainerElement as={'main'}>
         {children}
       </CenteredContentContainerElement>
-      <ProductModal/>
     </>
   );
 }
