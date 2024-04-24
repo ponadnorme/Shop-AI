@@ -15,11 +15,13 @@ import {useSessionStorage} from 'usehooks-ts';
 import {
   ImageGalleryAIModalDataType
 } from '@/app/components/Product/ImageGalleryAi/Modal/types';
+import {usePathname} from 'next/navigation';
 
 export const modalSessionName = 'imageGalleryModal';
 const modalSessionParameters = ['productId', 'imageId'];
 
-export const ImageGalleryAiModal = () => {
+const ImageGalleryAiModal = () => {
+  const pathname = usePathname();
   const [modalSessionValue, , removeModalSessionValue] = useSessionStorage<ImageGalleryAIModalDataType | undefined>(modalSessionName, undefined);
 
   const productId = !!modalSessionValue ? modalSessionValue.productId : null;
@@ -43,7 +45,10 @@ export const ImageGalleryAiModal = () => {
     }
   }, [productImages]);
 
-  if (!hasRequiredSessionValues(modalSessionValue, modalSessionParameters)) {
+  if (
+    !hasRequiredSessionValues(modalSessionValue, modalSessionParameters)
+    || modalSessionValue.url !== pathname
+  ) {
     return <></>;
   }
 
@@ -78,3 +83,4 @@ export const ImageGalleryAiModal = () => {
     </Modal>
   );
 };
+export default ImageGalleryAiModal;

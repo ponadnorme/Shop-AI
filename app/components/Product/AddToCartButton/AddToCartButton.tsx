@@ -8,6 +8,7 @@ import {modalSessionName} from '@/app/components/Product/ProductModal/ProductMod
 import {
   ProductSummaryModalDataType
 } from '@/app/components/Product/ProductModal/types';
+import {usePathname} from 'next/navigation';
 
 type AddToCartButtonProps = {
   productId: string,
@@ -15,6 +16,7 @@ type AddToCartButtonProps = {
 };
 
 export const AddToCartButton = ({productId, buttonText}: AddToCartButtonProps) => {
+  const pathname = usePathname();
   const [, setProductSummaryModal] = useSessionStorage<ProductSummaryModalDataType | undefined>(modalSessionName, undefined);
 
   return (
@@ -23,6 +25,7 @@ export const AddToCartButton = ({productId, buttonText}: AddToCartButtonProps) =
         setProductSummaryModal(() => {
           return {
             productId,
+            url: pathname,
           };
         });
       }}

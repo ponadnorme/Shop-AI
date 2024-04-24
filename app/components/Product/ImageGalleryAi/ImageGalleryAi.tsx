@@ -19,6 +19,7 @@ import {
 import {
   ImageGalleryAIModalDataType
 } from '@/app/components/Product/ImageGalleryAi/Modal/types';
+import {usePathname} from 'next/navigation';
 
 type ImageGalleryAiPropsType = {
   images: Array<ImageType>,
@@ -32,6 +33,7 @@ export const ImageGalleryAi = (
     title,
     productId
   }: ImageGalleryAiPropsType) => {
+  const pathname = usePathname();
   const [, setImageGalleryModal] = useSessionStorage<ImageGalleryAIModalDataType | undefined>(modalSessionName, undefined);
   const mainImageVariants = getMainImageVariants(images);
   const mainImageId = getMainImageId(images);
@@ -58,6 +60,7 @@ export const ImageGalleryAi = (
             return {
               productId,
               imageId: selectedImageId,
+              url: pathname,
             };
           });
         }}
