@@ -9,20 +9,13 @@ import {
 } from '@/app/components/Product/ProductImage/utils';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
 import {
-  hasRequiredSessionValues
-} from '@/app/components/Modal/Modal';
-import {useSessionStorage} from 'usehooks-ts';
-import {
-  ImageGalleryAIModalDataType
-} from '@/app/components/Product/ImageGalleryAi/Modal/types';
-import {usePathname} from 'next/navigation';
-
-export const modalSessionName = 'imageGalleryModal';
-const modalSessionParameters = ['productId', 'imageId'];
+  useImageGalleryAiModalData,
+  useImageGalleryAiModalSessionStorage,
+} from '@/app/components/Product/ImageGalleryAi/Modal/hooks';
 
 const ImageGalleryAiModal = () => {
-  const pathname = usePathname();
-  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage<ImageGalleryAIModalDataType | undefined>(modalSessionName, undefined);
+  const modalSessionValue = useImageGalleryAiModalData();
+  const [, , removeModalSessionValue] = useImageGalleryAiModalSessionStorage();
 
   const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 
@@ -33,7 +26,7 @@ const ImageGalleryAiModal = () => {
   const [selectedImageVariants, setSelectedImageVariants] = useState<ImageVariantType[] | null>(null);
 
   useEffect(() => {
-    setShouldFetch(hasRequiredSessionValues(modalSessionValue, modalSessionParameters));
+    setShouldFetch(!!modalSessionValue);
     setSelectedImageId(!!modalSessionValue ? modalSessionValue.imageId : null);
   }, [modalSessionValue]);
 
@@ -45,10 +38,7 @@ const ImageGalleryAiModal = () => {
     }
   }, [productImages]);
 
-  if (
-    !hasRequiredSessionValues(modalSessionValue, modalSessionParameters)
-    || modalSessionValue.url !== pathname
-  ) {
+  if (!modalSessionValue) {
     return <></>;
   }
 

@@ -12,14 +12,9 @@ import {ImageType, ImageVariantType} from '@/app/store/api/types';
 import {useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {FreeMode} from 'swiper/modules';
-import {useSessionStorage} from 'usehooks-ts';
 import {
-  modalSessionName
-} from '@/app/components/Product/ImageGalleryAi/Modal/ImageGalleryAiModal';
-import {
-  ImageGalleryAIModalDataType
-} from '@/app/components/Product/ImageGalleryAi/Modal/types';
-import {usePathname} from 'next/navigation';
+  useOpenImageGalleryAiModal
+} from '@/app/components/Product/ImageGalleryAi/Modal/hooks';
 
 type ImageGalleryAiPropsType = {
   images: Array<ImageType>,
@@ -33,8 +28,8 @@ export const ImageGalleryAi = (
     title,
     productId
   }: ImageGalleryAiPropsType) => {
-  const pathname = usePathname();
-  const [, setImageGalleryModal] = useSessionStorage<ImageGalleryAIModalDataType | undefined>(modalSessionName, undefined);
+  const openImageGalleryAiModal = useOpenImageGalleryAiModal();
+
   const mainImageVariants = getMainImageVariants(images);
   const mainImageId = getMainImageId(images);
 
@@ -56,13 +51,7 @@ export const ImageGalleryAi = (
         images={selectedImageVariants}
         alt={title}
         onClick={() => {
-          setImageGalleryModal(() => {
-            return {
-              productId,
-              imageId: selectedImageId,
-              url: pathname,
-            };
-          });
+          openImageGalleryAiModal(productId, selectedImageId);
         }}
       />
       <ThumbnailsElement>
