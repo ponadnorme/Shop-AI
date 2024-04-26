@@ -1,4 +1,4 @@
-'use client';
+// 'use parent client';
 
 import {
   ButtonContainerElement,
