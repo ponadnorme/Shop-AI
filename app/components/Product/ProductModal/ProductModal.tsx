@@ -1,33 +1,24 @@
 'use client';
 
 import {
-  hasRequiredSessionValues,
   Modal
 } from '@/app/components/Modal/Modal';
-import {useSessionStorage} from 'usehooks-ts';
 import {
-  ProductSummaryModalDataType
-} from '@/app/components/Product/ProductModal/types';
-import {usePathname} from 'next/navigation';
-
-export const modalSessionName = 'productSummaryModal';
-const modalSessionParameters = ['productId'];
+  useProductModalData,
+  useProductModalSessionStorage
+} from '@/app/components/Product/ProductModal/hooks';
 
 const ProductModal = () => {
-  const pathname = usePathname();
-  const [modalSessionValue, , removeModalSessionValue] = useSessionStorage<ProductSummaryModalDataType | undefined>(modalSessionName, undefined);
-  const productId = !!modalSessionValue ? modalSessionValue.productId : null;
+  const modalSessionValue = useProductModalData();
+  const [, , removeModalSessionValue] = useProductModalSessionStorage();
 
-  if (
-    !hasRequiredSessionValues(modalSessionValue, modalSessionParameters)
-    || modalSessionValue.url !== pathname
-  ) {
+  if (!modalSessionValue) {
     return <></>;
   }
 
   return (
     <Modal
-      title={`Karta produktu ${productId}`}
+      title={`Karta produktu ${modalSessionValue.productId}`}
       onAfterClose={() => {
         removeModalSessionValue();
       }}

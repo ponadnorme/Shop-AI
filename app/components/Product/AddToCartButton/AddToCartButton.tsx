@@ -3,12 +3,7 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {ButtonElement} from './styles';
-import {useSessionStorage} from 'usehooks-ts';
-import {modalSessionName} from '@/app/components/Product/ProductModal/ProductModal';
-import {
-  ProductSummaryModalDataType
-} from '@/app/components/Product/ProductModal/types';
-import {usePathname} from 'next/navigation';
+import {useOpenProductModal} from '@/app/components/Product/ProductModal/hooks';
 
 type AddToCartButtonProps = {
   productId: string,
@@ -16,18 +11,12 @@ type AddToCartButtonProps = {
 };
 
 export const AddToCartButton = ({productId, buttonText}: AddToCartButtonProps) => {
-  const pathname = usePathname();
-  const [, setProductSummaryModal] = useSessionStorage<ProductSummaryModalDataType | undefined>(modalSessionName, undefined);
+  const openModal = useOpenProductModal();
 
   return (
     <ButtonElement
       onClick={() => {
-        setProductSummaryModal(() => {
-          return {
-            productId,
-            url: pathname,
-          };
-        });
+        openModal(productId);
       }}
     >
       <FontAwesomeIcon icon={faCartPlus}/>
