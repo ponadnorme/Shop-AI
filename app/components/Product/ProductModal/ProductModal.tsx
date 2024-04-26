@@ -4,13 +4,13 @@ import {
   Modal
 } from '@/app/components/Modal/Modal';
 import {
-  useProductModalData,
-  useProductModalSessionStorage
+  useModalData,
+  useModalSessionStorage
 } from '@/app/components/Product/ProductModal/hooks';
 
 const ProductModal = () => {
-  const modalSessionValue = useProductModalData();
-  const [, , removeModalSessionValue] = useProductModalSessionStorage();
+  const modalSessionValue = useModalData();
+  const [, , removeModalSessionValue] = useModalSessionStorage();
 
   if (!modalSessionValue) {
     return <></>;

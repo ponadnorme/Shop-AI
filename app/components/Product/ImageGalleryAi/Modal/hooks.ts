@@ -5,13 +5,13 @@ import {
 } from '@/app/components/Product/ImageGalleryAi/Modal/types';
 import {useHasRequiredSessionValues} from '@/app/components/Modal/hooks';
 
-export const useImageGalleryAiModalSessionStorage = () => {
+export const useModalSessionStorage = () => {
   return useSessionStorage<ImageGalleryAIModalDataType | undefined>('imageGalleryAiModal', undefined);
 }
 
-export const useOpenImageGalleryAiModal = () => {
+export const useOpenModal = () => {
   const pathname = usePathname();
-  const [, setImageGalleryModal] = useImageGalleryAiModalSessionStorage();
+  const [, setImageGalleryModal] = useModalSessionStorage();
 
   return (productId: string, imageId: string) => {
     setImageGalleryModal({
@@ -22,9 +22,9 @@ export const useOpenImageGalleryAiModal = () => {
   };
 };
 
-export const useImageGalleryAiModalData = (): ImageGalleryAIModalDataType | null => {
+export const useModalData = (): ImageGalleryAIModalDataType | null => {
   const modalSessionParameters = ['productId', 'imageId'];
-  const [modalSessionValue] = useImageGalleryAiModalSessionStorage();
+  const [modalSessionValue] = useModalSessionStorage();
   const hasAllData = useHasRequiredSessionValues(modalSessionValue, modalSessionParameters);
 
   if (!hasAllData) {

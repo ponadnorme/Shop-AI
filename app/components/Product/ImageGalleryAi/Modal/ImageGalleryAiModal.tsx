@@ -9,13 +9,13 @@ import {
 } from '@/app/components/Product/ProductImage/utils';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
 import {
-  useImageGalleryAiModalData,
-  useImageGalleryAiModalSessionStorage,
+  useModalData,
+  useModalSessionStorage,
 } from '@/app/components/Product/ImageGalleryAi/Modal/hooks';
 
 const ImageGalleryAiModal = () => {
-  const modalSessionValue = useImageGalleryAiModalData();
-  const [, , removeModalSessionValue] = useImageGalleryAiModalSessionStorage();
+  const modalSessionValue = useModalData();
+  const [, , removeModalSessionValue] = useModalSessionStorage();
 
   const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 

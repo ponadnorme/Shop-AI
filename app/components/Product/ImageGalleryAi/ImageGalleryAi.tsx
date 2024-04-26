@@ -13,7 +13,7 @@ import {useState} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {FreeMode} from 'swiper/modules';
 import {
-  useOpenImageGalleryAiModal
+  useOpenModal
 } from '@/app/components/Product/ImageGalleryAi/Modal/hooks';
 
 type ImageGalleryAiPropsType = {
@@ -28,7 +28,7 @@ export const ImageGalleryAi = (
     title,
     productId
   }: ImageGalleryAiPropsType) => {
-  const openImageGalleryAiModal = useOpenImageGalleryAiModal();
+  const openImageGalleryAiModal = useOpenModal();
 
   const mainImageVariants = getMainImageVariants(images);
   const mainImageId = getMainImageId(images);

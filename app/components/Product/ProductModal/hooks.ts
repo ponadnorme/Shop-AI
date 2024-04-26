@@ -5,13 +5,13 @@ import {
 } from '@/app/components/Product/ProductModal/types';
 import {useHasRequiredSessionValues} from '@/app/components/Modal/hooks';
 
-export const useProductModalSessionStorage = () => {
+export const useModalSessionStorage = () => {
   return useSessionStorage<ProductSummaryModalDataType | undefined>('productSummaryModal', undefined);
 }
 
-export const useOpenProductModal = () => {
+export const useOpenModal = () => {
   const pathname = usePathname();
-  const [, setInitialModalData] = useProductModalSessionStorage();
+  const [, setInitialModalData] = useModalSessionStorage();
 
   return (productId: string) => {
     setInitialModalData({
@@ -21,8 +21,8 @@ export const useOpenProductModal = () => {
   };
 };
 
-export const useProductModalData = (): ProductSummaryModalDataType | null => {
-  const [modalSessionValue] = useProductModalSessionStorage();
+export const useModalData = (): ProductSummaryModalDataType | null => {
+  const [modalSessionValue] = useModalSessionStorage();
 
   const modalSessionParameters = ['productId'];
   const hasAllData = useHasRequiredSessionValues(modalSessionValue, modalSessionParameters);

@@ -3,7 +3,7 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {ButtonElement} from './styles';
-import {useOpenProductModal} from '@/app/components/Product/ProductModal/hooks';
+import {useOpenModal} from '@/app/components/Product/ProductModal/hooks';
 
 type AddToCartButtonProps = {
   productId: string,
@@ -11,7 +11,7 @@ type AddToCartButtonProps = {
 };
 
 export const AddToCartButton = ({productId, buttonText}: AddToCartButtonProps) => {
-  const openModal = useOpenProductModal();
+  const openModal = useOpenModal();
 
   return (
     <ButtonElement
