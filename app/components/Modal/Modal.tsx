@@ -12,6 +12,7 @@ import {
   ReadonlyURLSearchParams,
 } from 'next/navigation';
 import {ReactNode, useEffect, useState} from 'react';
+import {useCloseModal} from '@/app/components/Modal/hooks';
 
 type ModalPropsType = {
   title: string,
@@ -29,9 +30,12 @@ export const Modal = ({title, children, className, onAfterClose}: ModalPropsType
     });
   }, []);
 
+  const removeModalData = useCloseModal();
+
   const closeModal = () => {
     setIsOpened(false);
     setTimeout(() => {
+      removeModalData();
       onAfterClose && onAfterClose();
     }, 300);
   };

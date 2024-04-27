@@ -5,12 +5,10 @@ import {
 } from '@/app/components/Modal/Modal';
 import {
   useModalData,
-  useModalSessionStorage
 } from '@/app/components/Product/ProductModal/hooks';
 
 const ProductModal = () => {
   const modalSessionValue = useModalData();
-  const [, , removeModalSessionValue] = useModalSessionStorage();
 
   if (!modalSessionValue) {
     return <></>;
@@ -19,9 +17,6 @@ const ProductModal = () => {
   return (
     <Modal
       title={`Karta produktu ${modalSessionValue.productId}`}
-      onAfterClose={() => {
-        removeModalSessionValue();
-      }}
     >
       Produkt
     </Modal>

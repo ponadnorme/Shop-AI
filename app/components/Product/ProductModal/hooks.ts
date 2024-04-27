@@ -1,34 +1,23 @@
-import {useSessionStorage} from 'usehooks-ts';
-import {usePathname} from 'next/navigation';
 import {
+  ProductSummaryModalDataGuard,
   ProductSummaryModalDataType
 } from '@/app/components/Product/ProductModal/types';
-import {useHasRequiredSessionValues} from '@/app/components/Modal/hooks';
-
-export const useModalSessionStorage = () => {
-  return useSessionStorage<ProductSummaryModalDataType | undefined>('productSummaryModal', undefined);
-}
+import {
+  useOpenModal as useBaseOpenModal,
+  useModalData as useBaseModalData,
+} from '@/app/components/Modal/hooks';
+import {Modal} from '@/app/components/Modal/types';
 
 export const useOpenModal = () => {
-  const pathname = usePathname();
-  const [, setInitialModalData] = useModalSessionStorage();
+  const openModal = useBaseOpenModal(Modal.productSummary);
 
   return (productId: string) => {
-    setInitialModalData({
+    openModal({
       productId,
-      url: pathname,
     });
   };
 };
 
 export const useModalData = (): ProductSummaryModalDataType | null => {
-  const [modalSessionValue] = useModalSessionStorage();
-
-  const modalSessionParameters = ['productId'];
-  const hasAllData = useHasRequiredSessionValues(modalSessionValue, modalSessionParameters);
-  if (!hasAllData) {
-    return null;
-  }
-
-  return modalSessionValue as ProductSummaryModalDataType;
+  return useBaseModalData<ProductSummaryModalDataType>(ProductSummaryModalDataGuard, Modal.productSummary);
 };
