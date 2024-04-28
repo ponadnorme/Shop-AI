@@ -1,13 +1,14 @@
-import {usePathname} from 'next/navigation';
+import {usePathname, useSearchParams} from 'next/navigation';
 import {useSessionStorage} from 'usehooks-ts';
 import {Modal} from '@/app/components/Modal/types';
+import {useCallback, useEffect} from 'react';
 
 type SessionValue = {
   [key: string]: any,
   url?: string,
 };
 
-export const useModalSessionStorage = () => {
+const useModalSessionStorage = () => {
   return useSessionStorage<object | undefined>('sessionModal', undefined);
 }
 
@@ -26,9 +27,9 @@ export const useOpenModal = (id: Modal) => {
 
 export const useCloseModal = () => {
   const [, , removeModalSessionValue] = useModalSessionStorage();
-  return () => {
+  return useCallback(() => {
     removeModalSessionValue();
-  };
+  }, [removeModalSessionValue]);
 };
 
 export const useModalData = <T>(guardObject: object, id: Modal): T | null => {
@@ -41,7 +42,7 @@ export const useModalData = <T>(guardObject: object, id: Modal): T | null => {
   return modalSessionValue as T;
 }
 
-const hasRequiredData = (modalSessionValue: object | undefined, guardObject: object, id: Modal) => {
+const hasRequiredData = (modalSessionValue: SessionValue | undefined, guardObject: object, id: Modal) => {
   if (modalSessionValue === undefined
     || modalSessionValue.id !== id
   ) {
@@ -61,4 +62,14 @@ export const useHasRequiredSessionValues = (sessionValue: SessionValue | undefin
   const hasRequiredParameters = parameters.every(parameter => sessionValue.hasOwnProperty(parameter));
 
   return hasRequiredParameters && sessionValue.url === pathname;
+};
+
+export const useSessionCleanup = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const closeModal = useCloseModal();
+
+  useEffect(() => {
+    closeModal();
+  }, [pathname, searchParams, closeModal]);
 };

@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google';
 import {GlobalStyles} from '@/app/components/GlobalStyles/GlobalStyles';
 import HolyLoader from 'holy-loader';
 import dynamic from 'next/dynamic';
+import {ModalSessionManager} from '@/app/components/Modal/ModalSessionManager';
 
 const interFont = Inter({subsets: ['latin']});
 
@@ -27,6 +28,7 @@ export default function RootLayout({children}: Readonly<{
     <GlobalStyles/>
     <HolyLoader/>
     {children}
+    <ModalSessionManager/>
     <ProductModal/>
     <ImageGalleryAiModal/>
     </body>
