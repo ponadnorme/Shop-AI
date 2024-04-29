@@ -10,12 +10,10 @@ import {
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
 import {
   useModalData,
-  useModalSessionStorage,
 } from '@/app/components/Product/ImageGalleryAi/Modal/hooks';
 
 const ImageGalleryAiModal = () => {
   const modalSessionValue = useModalData();
-  const [, , removeModalSessionValue] = useModalSessionStorage();
 
   const productId = !!modalSessionValue ? modalSessionValue.productId : null;
 
@@ -50,9 +48,6 @@ const ImageGalleryAiModal = () => {
   return (
     <Modal
       title={`Galeria dla produktu: ${productId}`}
-      onAfterClose={() => {
-        removeModalSessionValue();
-      }}
     >
       <MainImageElement>
         <ProductImage

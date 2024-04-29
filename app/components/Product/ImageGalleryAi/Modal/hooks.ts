@@ -1,35 +1,24 @@
-import {usePathname} from 'next/navigation';
-import {useSessionStorage} from 'usehooks-ts';
 import {
+  ImageGalleryAIModalDataGuard,
   ImageGalleryAIModalDataType
 } from '@/app/components/Product/ImageGalleryAi/Modal/types';
-import {useHasRequiredSessionValues} from '@/app/components/Modal/hooks';
-
-export const useModalSessionStorage = () => {
-  return useSessionStorage<ImageGalleryAIModalDataType | undefined>('imageGalleryAiModal', undefined);
-}
+import {
+  useOpenModal as useBaseOpenModal,
+  useModalData as useBaseModalData,
+} from '@/app/components/Modal/hooks';
+import {Modal} from '@/app/components/Modal/types';
 
 export const useOpenModal = () => {
-  const pathname = usePathname();
-  const [, setImageGalleryModal] = useModalSessionStorage();
+  const openModal = useBaseOpenModal(Modal.imageGalleryAiModal);
 
   return (productId: string, imageId: string) => {
-    setImageGalleryModal({
+    openModal({
       productId,
       imageId,
-      url: pathname,
     });
   };
 };
 
 export const useModalData = (): ImageGalleryAIModalDataType | null => {
-  const modalSessionParameters = ['productId', 'imageId'];
-  const [modalSessionValue] = useModalSessionStorage();
-  const hasAllData = useHasRequiredSessionValues(modalSessionValue, modalSessionParameters);
-
-  if (!hasAllData) {
-    return null;
-  }
-
-  return modalSessionValue as ImageGalleryAIModalDataType;
+  return useBaseModalData<ImageGalleryAIModalDataType>(ImageGalleryAIModalDataGuard, Modal.imageGalleryAiModal);
 };
