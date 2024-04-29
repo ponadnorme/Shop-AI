@@ -4,6 +4,9 @@ import styled from '@emotion/styled';
 import {Modal as BaseModal} from '@/app/components/Modal/Modal';
 import {ModalContentElement} from '@/app/components/Modal/styles';
 import {CenteredContentContainerElement} from '@/app/styles/common';
+import {
+  ProductImageElement
+} from '@/app/components/Product/ProductImage/styles';
 
 export const Modal = styled(BaseModal)`
   ${ModalContentElement} {
@@ -22,4 +25,13 @@ export const MainImageElement = styled.div`
 export const ThumbnailsElement = styled(CenteredContentContainerElement)`
   display: flex;
   flex-wrap: wrap;
+  gap: 4px;
+
+  ${ProductImageElement} {
+    border: 1px solid #ccc;
+    
+    &.selected {
+      border-color: #190;
+    }
+  }
 `;

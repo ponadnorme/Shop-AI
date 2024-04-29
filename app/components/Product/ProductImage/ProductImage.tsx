@@ -2,7 +2,7 @@
 
 import {ProductImageElement} from './styles';
 import Link from 'next/link';
-import {SyntheticEvent} from 'react';
+import {HTMLAttributes, SyntheticEvent} from 'react';
 import {ImageVariantType} from '@/app/store/api/types';
 
 const handleProductImageError = (event: SyntheticEvent): void => {
@@ -15,9 +15,9 @@ type ProductImageProps = {
   images: Array<ImageVariantType> | null,
   linkTo?: string,
   onClick?: () => void,
-}
+} & HTMLAttributes<HTMLImageElement>
 
-const ProductImage = ({alt = '', images, linkTo, onClick}: ProductImageProps) => {
+const ProductImage = ({alt = '', images, linkTo, onClick, ...props}: ProductImageProps) => {
   const getOriginalImageVariant = ({images}: {
     images: Array<ImageVariantType>,
   }) => {
@@ -82,6 +82,7 @@ const ProductImage = ({alt = '', images, linkTo, onClick}: ProductImageProps) =>
       onError={(event) => {
         handleProductImageError(event);
       }}
+      {...props}
       {...imageProps}
     />
   </figure>;

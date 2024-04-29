@@ -62,6 +62,7 @@ const ImageGalleryAiModal = () => {
             alt={'Produkt'}
             key={image.id}
             onClick={() => thumbnailClicked(image)}
+            className={image.id === selectedImageId ? 'selected' : ''}
           />
         ))}
       </ThumbnailsElement>
