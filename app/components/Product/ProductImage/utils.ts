@@ -8,6 +8,16 @@ export function getMainImageVariants(imagesList: ImageType[]) {
     : null;
 }
 
+export function getImageVariants(imageId: string, imagesList: ImageType[]) {
+  const imageItem = imagesList.find(imageItem => {
+    return imageItem.id === imageId;
+  });
+
+  return !!imageItem
+    ? imageItem.variants
+    : null;
+}
+
 export const getMainImageId = (imagesList: ImageType[]) => {
   const mainImageItem = getMainImage(imagesList);
 

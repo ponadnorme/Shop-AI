@@ -5,7 +5,7 @@ import {useEffect, useState} from 'react';
 import {MainImageElement, Modal, ThumbnailsElement} from './styles';
 import {ProductImage} from '@/app/components/Product/ProductImage';
 import {
-  getMainImageVariants
+  getImageVariants,
 } from '@/app/components/Product/ProductImage/utils';
 import {ImageType, ImageVariantType} from '@/app/store/api/types';
 import {
@@ -29,12 +29,12 @@ const ImageGalleryAiModal = () => {
   }, [modalSessionValue]);
 
   useEffect(() => {
-    if (!!productImages) {
-      setSelectedImageVariants(getMainImageVariants(productImages));
+    if (!!productImages && !!selectedImageId) {
+      setSelectedImageVariants(getImageVariants(selectedImageId, productImages));
     } else {
       setSelectedImageVariants(null);
     }
-  }, [productImages]);
+  }, [productImages, selectedImageId]);
 
   if (!modalSessionValue) {
     return <></>;
