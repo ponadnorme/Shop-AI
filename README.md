@@ -45,6 +45,13 @@ Here is a brief list of npm packages worth mentioning:
 
 ## Functionalities
 
+Shop AI is fully functional shop for e-commerce business. Available functionalities are:
+- Products presentation including products search, sliders and categories,
+- Full checkout process,
+- Contact page,
+- Static pages like terms of service,
+- Customer account.
+
 
 ## FAQ
 
