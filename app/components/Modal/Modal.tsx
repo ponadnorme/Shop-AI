@@ -11,7 +11,7 @@ import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {
   ReadonlyURLSearchParams,
 } from 'next/navigation';
-import {ReactNode, useEffect, useState} from 'react';
+import {ReactNode, RefObject, useEffect, useState} from 'react';
 import {useCloseModal} from '@/app/components/Modal/hooks';
 
 type ModalPropsType = {
@@ -19,9 +19,10 @@ type ModalPropsType = {
   children: ReactNode,
   className?: string,
   onAfterClose?: () => void,
+  closeRef?: RefObject<HTMLButtonElement>,
 };
 
-export const Modal = ({title, children, className, onAfterClose}: ModalPropsType) => {
+export const Modal = ({title, children, className, onAfterClose, closeRef}: ModalPropsType) => {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
@@ -40,6 +41,12 @@ export const Modal = ({title, children, className, onAfterClose}: ModalPropsType
     }, 300);
   };
 
+  let closeModalProps: any = {};
+
+  if (!!closeRef) {
+    closeModalProps['ref'] = closeRef;
+  }
+
   return (
     <ModalElement className={className} isOpened={isOpened}>
       <ModalContentElement>
@@ -47,6 +54,7 @@ export const Modal = ({title, children, className, onAfterClose}: ModalPropsType
           <span>{title}</span>
           <CloseModalElement
             onClick={closeModal}
+            {...closeModalProps}
           >
             <FontAwesomeIcon
               icon={faXmark}
