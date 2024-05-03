@@ -70,7 +70,7 @@ export const Input = (
         <InputElement
           checked={checked}
           activeState={moveLabel}
-          hasValue={hasValue}
+          hasValue={!!hasValue}
           value={props.value}
           onChange={onChangeEvent}
         />
@@ -88,7 +88,7 @@ export const Input = (
         onBlur={handleBlur}
         onInput={handleOnInput}
         activeState={moveLabel}
-        hasValue={hasValue as boolean}
+        hasValue={!!hasValue}
         {...props}
       />
       {label && <label>{label}</label>}
