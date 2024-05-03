@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {InputWrapperElement, InputElement} from './styles';
 import {
   FieldError,
@@ -54,11 +54,35 @@ export const Input = (
     }
   };
 
+  const registerProps: any = register && name
+    ? register(name)
+    : {};
+
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    const onChangeEvent = registerProps?.onChange || (() => {});
+    return (
+      <InputWrapperElement>
+        <InputElement
+          checked={checked}
+          activeState={moveLabel}
+          hasValue={hasValue}
+          value={props.value}
+          onChange={onChangeEvent}
+        />
+        {label && <label>{label}</label>}
+      </InputWrapperElement>
+    );
+  }
+
   return (
     <InputWrapperElement>
       <InputElement
-        {...(register && name && register(name))}
-        name={name}
+        {...registerProps}
         checked={checked}
         onFocus={handleFocus}
         onBlur={handleBlur}
