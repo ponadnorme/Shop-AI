@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import {Navbar} from '@/app/components/Navbar/Navbar';
+import {BaseLayout} from '@/app/components/Layout/BaseLayout/BaseLayout';
 
 export const metadata: Metadata = {
   title: 'Strona główna - Shop AI',
@@ -11,8 +11,9 @@ export default function HomeLayout({children}: {
 }) {
   return (
     <>
-      <Navbar/>
-      {children}
+      <BaseLayout>
+        {children}
+      </BaseLayout>
     </>
   );
 };

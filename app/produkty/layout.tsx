@@ -1,6 +1,6 @@
 import {Metadata} from 'next';
-import {Navbar} from '@/app/components/Navbar/Navbar';
-import {CenteredContentContainerElement} from '@/app/styles/common';
+import {ReactNode} from 'react';
+import {BaseLayout} from '@/app/components/Layout/BaseLayout/BaseLayout';
 
 export const metadata: Metadata = {
   title: 'Strona produktu - Shop AI',
@@ -8,14 +8,11 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsLayout({children}: Readonly<{
-  children: React.ReactNode,
+  children: ReactNode,
 }>) {
   return (
-    <>
-      <Navbar/>
-      <CenteredContentContainerElement as={'main'}>
-        {children}
-      </CenteredContentContainerElement>
-    </>
+    <BaseLayout centeredMainContent={true}>
+      {children}
+    </BaseLayout>
   );
 }
