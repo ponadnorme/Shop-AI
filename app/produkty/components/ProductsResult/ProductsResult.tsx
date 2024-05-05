@@ -9,14 +9,26 @@ import {
   ContentAreaElement,
   ProductsResultWrapperElement, SidebarElement
 } from '@/app/produkty/components/ProductsResult/styles';
+import {ProductType} from '@/app/store/api/types';
 
-export const ProductsResult = ({initialProductsList}: {
-  initialProductsList: any
-}) => {
+type ProductsResultProps = {
+  initialProductsList: ProductType[],
+  query?: string,
+}
+
+export const ProductsResult = (
+  {
+    initialProductsList,
+    query
+  }: ProductsResultProps) => {
   const router = useRouter();
 
   const handleFilters = (data: ProductFiltersType) => {
     let queryParameters: any = {};
+
+    if (!!query) {
+      queryParameters['query'] = query;
+    }
 
     if (!!data.minPrice) {
       queryParameters['price-from'] = data.minPrice;

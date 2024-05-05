@@ -58,12 +58,6 @@ export const ProductsSearch = () => {
     productsErrors,
   } = useProducts({query: debouncedValue, limit: 10}, shouldFetch);
 
-  useEffect(() => {
-    if (shouldFetch) {
-      setShowSearchResults(true);
-    }
-  }, [shouldFetch]);
-
   const errorMessages: Array<string> = [];
 
   if (!!productsErrors) {
@@ -80,14 +74,13 @@ export const ProductsSearch = () => {
 
   useOnClickOutside(searchEngineRef, handleClickOutsideSearchEngine);
 
-  const handleSearchInputFocus = (value: string) => {
-    if (value.length > 0) {
-      setShowSearchResults(true);
-    }
+  const handleSearchInputFocus = () => {
+    setShowSearchResults(true);
   };
 
   const handleInputValue = (value: string) => {
     setInputValue(value);
+    setShowSearchResults(true);
     setValue(value);
   };
 
@@ -101,29 +94,31 @@ export const ProductsSearch = () => {
       placeholder={'Czego szukasz?'}
       className={'searchEngine'}
     />
-    {showSearchResults && <SearchedProductsElement
-      ref={searchEngineRef}
-    >
-      <CenteredContentContainerElement>
-        {productsIsLoading && <LoaderSpinner/>}
-        {errorMessages && errorMessages.map((value, index) => {
-          return <ErrorMessageElement
-            key={index}
-          >{value}</ErrorMessageElement>;
-        })}
-        {!!products && (
-          products.length > 0 ? (
-            products.map(product =>
-              <SearchedItem
-                hideSearchedItems={() => setShowSearchResults(false)}
-                clearInput={() => setInputValue('')}
-                key={product.id}
-                product={product}
-              />
-            )
-          ) : <NoResultsElement>Brak pasujących wyników...</NoResultsElement>
-        )}
-      </CenteredContentContainerElement>
-    </SearchedProductsElement>}
+    {showSearchResults && shouldFetch && (
+      <SearchedProductsElement
+        ref={searchEngineRef}
+      >
+        <CenteredContentContainerElement>
+          {productsIsLoading && <LoaderSpinner/>}
+          {errorMessages && errorMessages.map((value, index) => {
+            return <ErrorMessageElement
+              key={index}
+            >{value}</ErrorMessageElement>;
+          })}
+          {!!products && (
+            products.length > 0 ? (
+              products.map(product =>
+                <SearchedItem
+                  hideSearchedItems={() => setShowSearchResults(false)}
+                  clearInput={() => setInputValue('')}
+                  key={product.id}
+                  product={product}
+                />
+              )
+            ) : <NoResultsElement>Brak pasujących wyników...</NoResultsElement>
+          )}
+        </CenteredContentContainerElement>
+      </SearchedProductsElement>
+    )}
   </ProductsSearchElement>;
 };

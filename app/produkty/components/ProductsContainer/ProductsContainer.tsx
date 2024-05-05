@@ -4,6 +4,7 @@ import {
 import {LoaderSpinner} from '@/app/components/LoaderSpinner';
 import {Product} from '@/app/components/Product';
 import {JSX} from 'react';
+import {ProductType} from '@/app/store/api/types';
 
 export const ProductsContainer = (
   {
@@ -11,7 +12,7 @@ export const ProductsContainer = (
     emptyListPlaceholder,
     listWrap = true,
   }: {
-    products: Array<any> | null,
+    products: ProductType[] | null,
     emptyListPlaceholder?: JSX.Element,
     listWrap?: boolean,
   }) => {
