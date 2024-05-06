@@ -16,7 +16,8 @@ businesses to elevate their online presence and streamline their sales process.
 
 Below need improvement:
 1. Log in as `docker` user using `su docker` command.
-2. For starting dev environment run `npm run dev` command.
+2. Run `npm install`.
+3. For starting dev environment run `npm run dev` command.
 
 Docker is configured to listen on port **9100**, then go to Your browser and visit: http://localhost:9100.
 
