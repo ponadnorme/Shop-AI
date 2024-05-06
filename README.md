@@ -55,6 +55,11 @@ Shop AI is fully functional shop for e-commerce business. Available functionalit
 - Customer account.
 
 
+## API
+
+API documentation is available at: http://automatonai.pl/api/doc
+
+
 ## FAQ
 
 **Is it free?**
