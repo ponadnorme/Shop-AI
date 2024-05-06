@@ -90,7 +90,7 @@ export const ProductsSearch = () => {
       defaultValue={inputValue}
       onChange={e => handleInputValue(e.target.value)}
       onKeyDown={handleKeyDown}
-      onFocus={(e) => handleSearchInputFocus(e.target.value)}
+      onFocus={handleSearchInputFocus}
       placeholder={'Czego szukasz?'}
       className={'searchEngine'}
     />

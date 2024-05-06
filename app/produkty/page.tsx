@@ -37,10 +37,12 @@ export default async function ProductsPage(props: PageProps) {
 
   return (
     <PageElement>
-      <ProductsResult
-        initialProductsList={products}
-        query={props.searchParams.query}
-      />
+      {!!products && (
+        <ProductsResult
+          initialProductsList={products}
+          query={props.searchParams.query}
+        />
+      )}
     </PageElement>
   );
 }

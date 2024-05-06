@@ -11,7 +11,9 @@ export default async function HomePage() {
     <>
       <CenteredContentContainerElement>
         <h1>Shop AI - Twój nagłówek</h1>
-        <ProductSliderAi items={products}/>
+        {!!products && (
+          <ProductSliderAi items={products}/>
+        )}
       </CenteredContentContainerElement>
     </>
   );
