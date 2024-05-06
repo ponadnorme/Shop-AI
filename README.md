@@ -1,3 +1,5 @@
+![Automaton Shop AI](https://github.com/ponadnorme/Shop-AI/blob/master/main_image.png?raw=true)
+
 # Automaton Shop AI
 
 REST API-driven frontend application tailored for seamless e-commerce experiences.
