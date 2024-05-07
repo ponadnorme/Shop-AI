@@ -1,4 +1,4 @@
-![Automaton Shop AI](https://github.com/ponadnorme/Shop-AI/blob/master/main_image.png?raw=true)
+![Automaton Shop AI](/main_image.png)
 
 # Automaton Shop AI
 
