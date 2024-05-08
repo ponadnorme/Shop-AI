@@ -1,10 +1,34 @@
 'use client';
 
 import styled from '@emotion/styled';
+import {ButtonVariants} from '@/app/components/Button/types';
+import {css} from '@emotion/react';
 
-export const ButtonElement = styled.button`
+const handleVariant = (variant: ButtonVariants) => {
+  switch (variant) {
+    case ButtonVariants.primary:
+      return css`
+        background: #190;
+
+        &:hover {
+          background: #050;
+        }
+      `;
+    case ButtonVariants.secondary:
+      return css`
+        background: #08f;
+
+        &:hover {
+          background: #07c;
+        }
+      `;
+    }
+}
+
+export const ButtonElement = styled.button<{
+  variant: ButtonVariants,
+}>`
   align-items: center;
-  background: #190;
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -14,8 +38,5 @@ export const ButtonElement = styled.button`
   padding: 4px 16px;
   text-align: center;
   transition: background .2s;
-
-  &:hover {
-    background: #050;
-  }
+  ${props => handleVariant(props.variant)}
 `;

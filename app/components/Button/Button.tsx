@@ -3,11 +3,15 @@
 import {ButtonElement} from '@/app/components/Button/styles';
 import Link from 'next/link';
 import React from 'react';
+import {ButtonVariants} from '@/app/components/Button/types';
 
-export const Button = ({linkTo, children, ...props}: {
+type ButtonProps = {
   linkTo?: string,
   children: React.ReactNode,
-} & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+  variant: ButtonVariants,
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const Button = ({linkTo, children, variant = ButtonVariants.primary, ...props}: ButtonProps) => {
   const linkProps = linkTo ? {
     as: Link,
     href: linkTo,
@@ -17,6 +21,7 @@ export const Button = ({linkTo, children, ...props}: {
     <>
       <ButtonElement
         {...linkProps}
+        variant={variant}
         {...props}
       >
         {children}
