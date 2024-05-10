@@ -8,7 +8,7 @@ import {ButtonVariants} from '@/app/components/Button/types';
 type ButtonProps = {
   linkTo?: string,
   children: React.ReactNode,
-  variant: ButtonVariants,
+  variant?: ButtonVariants,
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({linkTo, children, variant = ButtonVariants.primary, ...props}: ButtonProps) => {
