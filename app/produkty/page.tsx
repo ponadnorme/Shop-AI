@@ -6,10 +6,10 @@ import {fetchProducts} from '@/app/store/api/products';
 
 type QueryParameters = {
   query?: string,
-  'page-limit': number,
-  'page-offset': number,
-  'price-from': number,
-  'price-to': number,
+  pageLimit?: number,
+  page?: number,
+  priceFrom?: number,
+  priceTo?: number,
 }
 
 type PageProps = {
@@ -18,29 +18,35 @@ type PageProps = {
 
 export default async function ProductsPage(props: PageProps) {
   let filters: any = {};
+
+  let itemsPerPage = 30;
+
   if (props.searchParams.query !== undefined) {
     filters['query'] = props.searchParams.query;
   }
-  if (props.searchParams['page-limit'] !== undefined) {
-    filters['limit'] = props.searchParams['page-limit'];
+  if (props.searchParams.pageLimit !== undefined) {
+    itemsPerPage = props.searchParams.pageLimit;
   }
-  if (props.searchParams['page-offset'] !== undefined) {
-    filters['limit'] = props.searchParams['page-offset'];
+  if (props.searchParams.page !== undefined) {
+    filters['offset'] = (props.searchParams.page - 1) * itemsPerPage;
   }
-  if (props.searchParams['price-from'] !== undefined) {
-    filters['priceFrom'] = props.searchParams['price-from'];
+  if (props.searchParams.priceFrom !== undefined) {
+    filters['priceFrom'] = props.searchParams.priceFrom;
   }
-  if (props.searchParams['price-to'] !== undefined) {
-    filters['priceTo'] = props.searchParams['price-to'];
+  if (props.searchParams.priceTo !== undefined) {
+    filters['priceTo'] = props.searchParams.priceTo;
   }
-  const {products} = await fetchProducts({...filters});
+
+  filters['limit'] = itemsPerPage;
+  const {products, productsMeta} = await fetchProducts({...filters});
 
   return (
     <PageElement>
       {!!products && (
         <ProductsResult
           initialProductsList={products}
-          query={props.searchParams.query}
+          productsMeta={productsMeta}
+          itemsPerPage={itemsPerPage}
         />
       )}
     </PageElement>
