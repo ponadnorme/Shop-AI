@@ -5,13 +5,13 @@ import {ErrorModelType, ImageType, ProductType} from '@/app/store/api/types';
 import {fetcher} from '@/app/store/api/requestProcessor';
 
 type ProductsResponseType = {
-  products: ProductType[] | null | undefined,
+  products: ProductType[] | undefined,
   productsMeta: {
     totalRows: number,
   },
   productsIsLoading: boolean,
   productsError: Error | undefined,
-  productsErrors: ErrorModelType[] | null | undefined,
+  productsErrors: ErrorModelType[] | undefined,
 };
 
 export const useProducts = ({category, limit, query}: {
@@ -40,11 +40,11 @@ export const useProducts = ({category, limit, query}: {
   const {data, error, isLoading} = useSWR(shouldFetch ? url : null, fetcher);
 
   return {
-    products: data === null ? null : data?.data,
+    products: data?.data,
     productsMeta: data?.meta,
     productsIsLoading: isLoading,
     productsError: error,
-    productsErrors: data === null ? null : data?.errors,
+    productsErrors: data?.errors,
   };
 };
 

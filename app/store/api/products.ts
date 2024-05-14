@@ -10,11 +10,11 @@ type ProductsProps = {
 }
 
 type ProductsResponseType = {
-  products: ProductType[] | null | undefined,
+  products: ProductType[] | undefined,
   productsMeta: {
     totalRows: number,
-  },
-  productsErrors: ErrorModelType[] | null | undefined,
+  } | undefined,
+  productsErrors: ErrorModelType[] | undefined,
 }
 
 export const fetchProducts = async (
@@ -52,8 +52,8 @@ export const fetchProducts = async (
   });
 
   return {
-    products: response === null ? null : response?.data,
-    productsMeta: response === null ? null : response?.meta,
-    productsErrors: response === null ? null : response?.errors,
+    products: response?.data,
+    productsMeta: response?.meta,
+    productsErrors: response?.errors,
   };
 };

@@ -20,7 +20,7 @@ type ProductsResultProps = {
   initialProductsList: ProductType[],
   productsMeta: {
     totalRows: number,
-  },
+  } | undefined,
   itemsPerPage: number,
 }
 
@@ -36,7 +36,7 @@ export const ProductsResult = (
   const query = searchParams.get("query");
 
   const currentPage = parseInt(searchParams.get('page') || '1');
-  const totalPages = Math.ceil(productsMeta.totalRows / itemsPerPage);
+  const totalPages = !!productsMeta && Math.ceil(productsMeta.totalRows / itemsPerPage) || 1;
 
   const handleFilters = (data: ProductFiltersType) => {
     let queryParameters: any = {};

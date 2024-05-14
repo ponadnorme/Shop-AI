@@ -19,7 +19,7 @@ import {buildRoute, Pages} from '@/app/routes';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useDebounceValue, useOnClickOutside} from 'usehooks-ts';
 import {useProducts} from '@/app/store/api/productsClient';
-import {extractErrorMessages} from '@/app/utils/apiResponseExtractionUtils';
+import {RequestErrors} from '@/app/components/RequestErrors/RequestErrors';
 
 export const ProductsSearch = () => {
   const router = useRouter();
@@ -58,12 +58,6 @@ export const ProductsSearch = () => {
     productsErrors,
   } = useProducts({query: debouncedValue, limit: 10}, shouldFetch);
 
-  const errorMessages: Array<string> = [];
-
-  if (!!productsErrors) {
-    errorMessages.push(...(extractErrorMessages({errorResponse: productsErrors})));
-  }
-
   const handleClickOutsideSearchEngine = (e: MouseEvent | TouchEvent | FocusEvent) => {
     const target = e.target as HTMLElement;
     if (target.closest('.searchEngine')) {
@@ -100,11 +94,7 @@ export const ProductsSearch = () => {
       >
         <CenteredContentContainerElement>
           {productsIsLoading && <LoaderSpinner/>}
-          {errorMessages && errorMessages.map((value, index) => {
-            return <ErrorMessageElement
-              key={index}
-            >{value}</ErrorMessageElement>;
-          })}
+          <RequestErrors errors={productsErrors}/>
           {!!products && (
             products.length > 0 ? (
               products.map(product =>
