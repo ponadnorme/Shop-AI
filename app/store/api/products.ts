@@ -45,7 +45,7 @@ export const fetchProducts = async (
 
   const parsedQueryParameters = new URLSearchParams(queryParameters).toString();
   const urlParameters = parsedQueryParameters ? `?${parsedQueryParameters}` : '';
-  const url = `${process.env.NEXT_APP_BASE_URL}/api/summary/products${urlParameters}`;
+  const url = `${process.env.NEXT_API_URL}/summary/products${urlParameters}`;
 
   const response = await fetcher(url, {
     cache: 'no-store',

@@ -12,7 +12,7 @@ import {CenteredContentContainerElement} from '@/app/styles/common';
 import {ProductsSearch} from '@/app/components/ProductsSearch/ProductsSearch';
 
 async function fetchMainMenu() {
-  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/menu/main`);
+  const response = await fetch(`${process.env.NEXT_API_URL}/menu/main`);
   if (!response.ok) {
     throw new Error('Failed to fetch main menu');
   }

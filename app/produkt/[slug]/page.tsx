@@ -6,7 +6,7 @@ import {
 } from '@/app/components/Product/AddToCartButton/AddToCartButton';
 
 async function getTest(productSlug: string) {
-  const response = await fetch(`${process.env.NEXT_APP_BASE_URL}/api/slug/products/${productSlug}`, {
+  const response = await fetch(`${process.env.NEXT_API_URL}/slug/products/${productSlug}`, {
     cache: 'no-store',
   });
   if (!response.ok) {
