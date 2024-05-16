@@ -14,6 +14,11 @@ businesses to elevate their online presence and streamline their sales process.
 2. Start containers: `docker compose up -d`.
 3. Open container CLI: `docker exec -it automaton_shop_ai_front bash`
 
+Create .env.local file:
+```text
+
+```
+
 Below need improvement:
 1. Log in as `docker` user using `su docker` command.
 2. Run `npm install`.
