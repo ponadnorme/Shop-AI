@@ -16,7 +16,7 @@ businesses to elevate their online presence and streamline their sales process.
 
 Create .env.local file:
 ```text
-
+NEXT_API_URL=https://api.automatonai.pl/api
 ```
 
 Below need improvement:
