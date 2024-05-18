@@ -14,6 +14,11 @@ const Map = () => {
           },
           posType: 'DELIVERY',
           codOnly: false,
+          brands: [
+            {
+              brand: 'INPOST',
+            },
+          ],
         }
       );
     } else {
