@@ -1,6 +1,7 @@
 import {Metadata} from 'next';
 import {BaseLayout} from '@/app/components/Layout/BaseLayout/BaseLayout';
 import Script from 'next/script';
+import {ReactNode} from 'react';
 
 export const metadata: Metadata = {
   title: 'Strona główna - Shop AI',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomeLayout({children}: {
-  children: React.ReactNode,
+  children: ReactNode,
 }) {
   return (
     <>
