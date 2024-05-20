@@ -1,5 +1,6 @@
 import {ErrorModelType, ProductType} from '@/app/store/api/types';
 import {fetcher} from '@/app/store/api/requestProcessor';
+import {getRequest, handleResponse} from '@/app/utils/apiUtils';
 
 type ProductsProps = {
   offset?: number,
@@ -10,11 +11,12 @@ type ProductsProps = {
 }
 
 type ProductsResponseType = {
-  products: ProductType[] | undefined,
-  productsMeta: {
+  products?: ProductType[],
+  productsMeta?: {
     totalRows: number,
-  } | undefined,
-  productsErrors: ErrorModelType[] | undefined,
+  },
+  productsErrors?: ErrorModelType[],
+  productsStatusCode: number,
 }
 
 export const fetchProducts = async (
@@ -45,15 +47,14 @@ export const fetchProducts = async (
 
   const parsedQueryParameters = new URLSearchParams(queryParameters).toString();
   const urlParameters = parsedQueryParameters ? `?${parsedQueryParameters}` : '';
-  const url = `${process.env.NEXT_API_URL}/summary/products${urlParameters}`;
+  const url = `/summary/products${urlParameters}`;
 
-  const response = await fetcher(url, {
-    cache: 'no-store',
-  });
+  const {data, statusCode} = await handleResponse(await getRequest(url));
 
   return {
-    products: response?.data,
-    productsMeta: response?.meta,
-    productsErrors: response?.errors,
+    products: data?.data,
+    productsMeta: data?.meta,
+    productsErrors: data?.errors,
+    productsStatusCode: statusCode,
   };
 };
