@@ -7,7 +7,7 @@ import {MainMenuRootModel} from './types';
 import Link from 'next/link';
 
 export const MainMenu = ({mainMenu}: {
-  mainMenu: Array<MainMenuRootModel>,
+  mainMenu: MainMenuRootModel[],
 }) => {
   return <MenuElement>
     <MenuListElement>

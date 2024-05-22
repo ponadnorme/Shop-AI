@@ -10,17 +10,10 @@ import Image from 'next/image';
 import {MainMenu} from '@/app/components/Navbar/MainMenu/MainMenu';
 import {CenteredContentContainerElement} from '@/app/styles/common';
 import {ProductsSearch} from '@/app/components/ProductsSearch/ProductsSearch';
-
-async function fetchMainMenu() {
-  const response = await fetch(`${process.env.NEXT_API_URL}/menu/main`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch main menu');
-  }
-  return response.json();
-}
+import {fetchMainMenu} from '@/app/store/api/menuServer';
 
 export const Navbar = async () => {
-  const mainMenu = await fetchMainMenu();
+  const {mainMenu} = await fetchMainMenu();
 
   return (
     <>
@@ -35,7 +28,7 @@ export const Navbar = async () => {
             </Link>
           </LogoElement>
           <ProductsSearch/>
-          <MainMenu mainMenu={mainMenu.data}/>
+          {!!mainMenu && <MainMenu mainMenu={mainMenu}/>}
         </CenteredContentContainerElement>
       </NavbarElement>
       <NavbarSpaceFillElement/>
