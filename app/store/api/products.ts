@@ -58,3 +58,19 @@ export const fetchProducts = async (
     productsStatusCode: statusCode,
   };
 };
+
+type ProductBySlugResponseType = {
+  product?: ProductType,
+  productErrors?: ErrorModelType[],
+  productStatusCode: number,
+}
+
+export const fetchProductBySlug = async (slug: string): Promise<ProductBySlugResponseType> => {
+  const url = `/slug/products/${slug}`;
+  const {data, statusCode} = await handleResponse(await getRequest(url));
+  return {
+    product: data?.data,
+    productErrors: data?.errors,
+    productStatusCode: statusCode,
+  };
+};

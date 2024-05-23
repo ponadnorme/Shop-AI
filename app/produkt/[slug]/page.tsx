@@ -4,51 +4,44 @@ import {Price} from '@/app/components/Product/Price';
 import {
   AddToCartButton
 } from '@/app/components/Product/AddToCartButton/AddToCartButton';
-
-async function getTest(productSlug: string) {
-  const response = await fetch(`${process.env.NEXT_API_URL}/slug/products/${productSlug}`, {
-    cache: 'no-store',
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch');
-  }
-
-  return response.json();
-}
+import {fetchProductBySlug} from '@/app/store/api/products';
 
 export default async function ProductPage({params}: {
   params: { slug: string }
 }) {
-  const productData = await getTest(params.slug);
-  const exampleProduct = productData.data;
+  const {product} = await fetchProductBySlug(params.slug);
+  
+  if (!product) {
+    return null;
+  }
 
   return (
     <>
       <h1>Strona produktu</h1>
       <ImageGalleryAi
-        images={exampleProduct.images}
-        title={exampleProduct.title}
-        productId={exampleProduct.id}
+        images={product.images}
+        title={product.title}
+        productId={product.id}
       />
-      <h1>{exampleProduct.title}</h1>
+      <h1>{product.title}</h1>
       <div style={{
         width: 200,
       }}>
         <Rating
-          rating={exampleProduct.rating}
+          rating={product.rating}
         />
       </div>
       <div>
         <Price
-          price={exampleProduct.price}
-          regularPrice={exampleProduct.regularPrice}
-          lowestPrice={exampleProduct.lowestPrice}
+          price={product.price}
+          regularPrice={product.regularPrice}
+          lowestPrice={product.lowestPrice}
         />
-        <AddToCartButton productId={exampleProduct.id} buttonText={'Dodaj do koszyka'}/>
+        <AddToCartButton productId={product.id} buttonText={'Dodaj do koszyka'}/>
       </div>
       <div>
-        {exampleProduct.quantity > 0 ? <>
-            Dostępny ({exampleProduct.quantity} szt.)
+        {product.quantity > 0 ? <>
+            Dostępny ({product.quantity} szt.)
           </>
           : <>
             Niedostępny
