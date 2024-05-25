@@ -16,6 +16,24 @@ Shop AI components modified to fit the specific needs of the project.
 
 **Production** version is available at: https://ponadnorme.pl
 
+### Home page:
+![Automaton Shop AI](/ponadnorme-home.png)
+
+### Product page:
+![Automaton Shop AI](/ponadnorme-product.png)
+
+### Category page:
+![Automaton Shop AI](/ponadnorme-category.png)
+
+
+## Before You start
+
+**This project is still in development phase.** There's still a lot of work to be done, before You can go live with it.
+
+You can watch us on Discord: https://discord.gg/FbpW8PJ4RC
+
+![Ponadnorme Discord channel](https://dcbadge.limes.pink/api/server/https://discord.gg/FbpW8PJ4RC)
+
 
 ## Functionalities
 
@@ -82,3 +100,8 @@ For more information how to work with Next.js check: https://nextjs.org/docs.
 Frontend Shop application is totally free. Although to make it work, You need 
 Baselinker account for order management.
 
+
+## Planned features:
+
+- Multilanguage support.
+- **More modules to make Your shop even more attractive!**
