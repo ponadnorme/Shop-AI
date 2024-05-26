@@ -30,7 +30,7 @@ RUN apt-get update \
       vim
 
 # Node.js setup
-RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
   && apt-get update \
   && apt-get install -y nodejs
 
