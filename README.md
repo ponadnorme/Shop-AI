@@ -87,9 +87,9 @@ Docker is configured to listen on port **9100**, then go to Your browser and vis
 For more information how to work with Next.js check: https://nextjs.org/docs.
 
 
-## Server specification
+## Server requirements
 
-- Node.js v.19+
+- Node.js v.20
 - Nginx
 
 
