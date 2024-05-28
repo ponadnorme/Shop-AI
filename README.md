@@ -63,7 +63,7 @@ Here is a brief list of npm packages worth mentioning:
 
 ## API
 
-API documentation is available at: http://automatonai.pl/api/doc
+API documentation is available at: http://automatonai.pl/api/doc (Swagger) and http://automatonai.pl/api/doc.json (OpenAPI).
 
 
 ## Preparing environment
