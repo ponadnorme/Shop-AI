@@ -7,7 +7,7 @@ import {ImageVariantType} from '@/app/store/api/types';
 
 const handleProductImageError = (event: SyntheticEvent): void => {
   const element: HTMLImageElement = event.currentTarget as HTMLImageElement;
-  element.srcset = process.env.NEXT_PUBLIC_PRODUCT_FALLBACK_IMAGE as string;
+  element.srcset = "/img/blank.png";
 };
 
 type ProductImageProps = {
@@ -35,7 +35,7 @@ const ProductImage = ({alt = '', images, linkTo, onClick, ...props}: ProductImag
   const fallbackImageVariant = () => {
     return {
       variant: 'fallback',
-      url: process.env.NEXT_PUBLIC_PRODUCT_FALLBACK_IMAGE,
+      url: '/img/blank.png',
     };
   };
 
@@ -77,7 +77,7 @@ const ProductImage = ({alt = '', images, linkTo, onClick, ...props}: ProductImag
     <ProductImageElement
       loading="lazy"
       alt={alt}
-      src={process.env.NEXT_PUBLIC_PRODUCT_FALLBACK_IMAGE}
+      src="/img/blank.png"
       srcSet={srcSet}
       onError={(event) => {
         handleProductImageError(event);
